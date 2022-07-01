@@ -44,7 +44,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
 		String sql = "SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT B.*, MNAME FROM BOARD B, MEMBER M WHERE B.MID=M.MID" + 
-				"    ORDER BY BGROUP DESC, STEP) A)" + 
+				"    ORDER BY BGROUP DESC, bSTEP) A)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();

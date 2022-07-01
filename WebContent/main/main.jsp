@@ -218,15 +218,15 @@
 					</div>
 					<div style="clear: both;"></div>
 					<div class="grid text-center">
-					${cars }
-						<c:forEach var="car" items="${cars }">
+					${cars } 
 							<div class="grid-item transition metal ium">
+						<c:forEach var="car" items="${cars }">
 								<img alt="대표사진" src="${conPath }/carimg/${car.cphoto}">
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-110">
-										<h4 class="text-white">박스터</h4>
+										<h4 class="text-white">${car.carname }</h4>
 										<h5 class="text-white">
-											<em>ㅇㅇㅇ</em>
+											<em>${car.cprice }</em>
 										</h5>
 										<a href="${conPath }/car/carContent.jsp?cid=${cid}"
 											class="popup-img text-white m-top-40">자세히 보기<i
@@ -272,8 +272,7 @@
 					<!-- End off grid item -->
 
 					<div class="grid-item alkali ar">
-						<img alt=""
-							src="${conPath }/assets/images/porsche/718caymanGT4.png">
+						<img alt="" src="${conPath }/carimg/718caymanGT4.png">
 						<div class="grid_hover_area text-center">
 							<div class="grid_hover_text m-top-50">
 								<h4 class="text-white">718CaymanGT4</h4>
@@ -290,8 +289,7 @@
 					<!-- End off grid item -->
 
 					<div class="grid-item post-transition metal ium">
-						<img alt=""
-							src="${conPath }/assets/images/porsche/911CarreraGTS.png">
+						<img alt="" src="${conPath }/carimg/911Carrera.png">
 						<div class="grid_hover_area text-center">
 							<div class="grid_hover_text m-top-150">
 								<h4 class="text-white">911GTS</h4>
@@ -366,7 +364,7 @@
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-									<img alt="" src="${conPath }/carimg/${cars.cphoto}">
+								<img alt="" src="${conPath }/carimg/718caymanGT4.png">
 									<div class="model_caption">
 										<h5 class="text-white">Angela Baby</h5>
 									</div>
