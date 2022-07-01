@@ -37,7 +37,7 @@
  <jsp:include page="../main/header.jsp"/>
  <div id="content_form">
 		<table>
-				 <caption>${board.bno }글 상세보기</caption>
+				 <caption>${board.bno }번 글 상세보기</caption>
 				 <tr><td>작성자</td>
 				 		 <td>${board.mid}님</td>
 				 </tr>
@@ -47,7 +47,31 @@
 				 <tr><td>본문</td>
 				 		 <td><pre>${board.bcontent}</pre></td>
 				 </tr>
-				 <tr><th>첨부파일</th>
+				 <tr><th>사진</th>
+				 	<td>
+				 		<c:if test="${not empty board.bfile }">
+				 		<a href="${conPath }/boardUp/${board.bfile}" target="_balnk">${board.bfile }</a>
+				 		</c:if>
+				 		<c:if test="${empty board.bfile }">
+				 		첨부파일 없음
+				 		</c:if>
+				 	</td>
+				</tr>
+				 <tr><td colspan="2">
+				 			<c:if test="${member.mid eq board.mid }">
+				 				<button class="btn" onclick="location='${conPath}/boardModifyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">수정</button>
+				 			</c:if>
+				 			<c:if test="${member.mid eq board.mid or not empty admin}">
+				 				<button class="btn" onclick="location='${conPath}/boardDelete.do?bno=${board.bno }&pageNum=${param.pageNum }'">삭제</button>
+				 			</c:if>
+				 			<c:if test="${not empty member }">
+				 				<button class="btn" onclick="location='${conPath}/boardReplyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">답변</button>
+				 			</c:if>
+				 			<input type="button" value="목록" class="btn"
+				 	onclick="location='${conPath}/boardList.do?pageNum=${param.pageNum }'">	
+				
+				</table>
+				</div> 
 				 
 </body>
 </html>

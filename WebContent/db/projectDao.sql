@@ -33,10 +33,10 @@ SELECT * FROM MEMBER;
 ----------------------------------------------------------------------
 --(1)글목록(startRow~endRow)
 SELECT B.*, MNAME FROM BOARD B, MEMBER M WHERE B.MID=M.MID
-    ORDER BY BGROUP DESC, STEP; --출력기준
+    ORDER BY BGROUP DESC, bSTEP; --출력기준
 SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT B.*, MNAME FROM BOARD B, MEMBER M WHERE B.MID=M.MID
-    ORDER BY BGROUP DESC, STEP) A) 
-    WHERE RN BETWEEN 2 AND 3; --DAO에 들어갈 쿼리
+    ORDER BY BGROUP DESC, bSTEP) A) 
+    WHERE RN BETWEEN 1 AND 2; --DAO에 들어갈 쿼리
     
 --(2) 글 개수
 SELECT COUNT(*) FROM BOARD;
@@ -56,13 +56,15 @@ SELECT B.*, MNAME FROM BOARD B, MEMBER M
     WHERE M.MID=B.MID AND BNO=1;
     
 --(6)글 수정하기 
-UPDATE BOARD SET bSUBJECT = '바뀐제목',
+UPDATE BOARD SET
+                bSUBJECT = '바뀐제목3',
                  BCONTENT = '본문1', 
-                 BFILE = '사진',  
-                 bIP = '192.168.151.10',
+                 BFILE = '사진',            
                  brdate = sysdate
-                 WHERE MID = 'jo';
-                 
+                 WHERE MID = 'jo' and bno = '14';
+           commit;      
+select * from board where mid = 'jo' ;     
+
 --(7)글 삭제하기(BNO)로 삭제                 
 COMMIT;
 DELETE FROM BOARD WHERE BNO=3;
@@ -83,7 +85,7 @@ COMMIT;
 ----------------------------------------------------------------------
 --                          ADMIN TABLE                             --
 ----------------------------------------------------------------------
-INSERT INTO ADMIN(AID,APW) VALUES ('ADMIN','111');
+INSERT INTO ADMIN(AID,APW,ANAME) VALUES ('ADMIN','111','관리자');
 --ADMIN  MAIN의 CAR LIST  수정, 삭제, 자유게시판 수정, 삭제,
 --(1) admin loginCheck
 SELECT * FROM ADMIN WHERE AID = 'ADMIN' AND APW='111';
@@ -105,11 +107,11 @@ select * from car where brandid = 'B1';
 select * from car where designID = 10;
 --MAIN LIST
 SELECT brandNAME,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B 
-    WHERE C.brandID = b.brandID ;
+    WHERE C.brandID = b.brandID AND BRANDNAME like '%'||'PORSCHE'||'%';
     
 --BRAND 밑에 DESIGN별 LIST
 SELECT brandNAME,CARNAME,d.designname ,CPHOTO, Cprice FROM CAR C, CAR_BRAND B , CAR_DESIGN D
-    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME='PORSCHE'  AND D.DESIGNID=10;
+    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME like '%'||''||'%'  AND D.DESIGNID LIKE'%'||''||'%';
 
 
 --차 등록
@@ -138,3 +140,4 @@ UPDATE MEMBER SET MGRADE = (SELECT G.MGRADE
     FROM (SELECT M.*, NVL((SELECT SUM(bHIT) FROM BOARD WHERE MID=M.MID GROUP BY MID), 0) BHIT FROM MEMBER M) MT, MEMBER_GRADE G
     WHERE bHIT BETWEEN LOW AND HIGH AND MID='ZICO')
     WHERE MID='ZICO'; -- ★ ★ ★2번
+    commit;

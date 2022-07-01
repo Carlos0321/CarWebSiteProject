@@ -31,10 +31,10 @@
 	<script>
 		$(document).ready(function(){
 			$('tr').click(function(){
-				var mid = Number($(this).children().eq(0).text()); // 0번째 td안의 있는 text;
+				var bno = Number($(this).children().eq(0).text()); // 0번째 td안의 있는 text;
 				//alert(fId);
-				if(!isNaN(mid)){
-					location.href = '${conPath}/boardContent.do?mid='+mid+'&pageNum=${pageNum}';
+				if(!isNaN(bno)){
+					location.href = '${conPath}/boardContent.do?bno='+bno+'&pageNum=${pageNum}';
 				}
 			});
 		});
@@ -43,6 +43,7 @@
 <body>
  	<c:if test="${not empty boardResult }">
  		<script>alert('${boaredResult}');</script>
+ 		
  	</c:if>
  	<jsp:include page="../main/header.jsp"/>
  	<div id="content_form">
@@ -60,8 +61,8 @@
 		</c:if>
 		<c:if test="${totCnt!=0 }">
 			<c:forEach items="${boardList }" var="board">
-				<tr><td>${board.mid }</td>
-						<td>${board.mname }</td>
+				<tr><td>${board.bno }</td>
+						<td>${board.mid }</td>
 						<td class="left">
 							<c:forEach var="i" begin="1" end="${board.bindent }">
 								<c:if test="${i==board.bindent }">└─</c:if>
@@ -69,12 +70,14 @@
 							</c:forEach>
 							${board.bsubject } <!-- 글제목에 a태그를 걸지 말고 query로 tr을 클릭하면 상세보기 페이지로 가기 -->
 							<c:if test="${not empty board.bfile }">
-								<td><img src="${conPath }/boardUp/WINTER.JPG" width="100"></td>
+								<td><img src="${conPath }/boardUp/${board.bfile}" width="100"></td>
+							</c:if>
+							<c:if test="${empty board.bfile }">
+								<td>사진 미기재</td>
 							</c:if>
 						</td>
 						<td>${board.bhit }</td>
-						<td><fmt:formatDate value="${board.bRdate }" type="date" dateStyle="short"/></td>
-						<td>${board.bip }</td>
+						<td><fmt:formatDate value="${board.brdate }" type="date" dateStyle="short"/></td>
 				</tr>
 			</c:forEach>
 		</c:if>

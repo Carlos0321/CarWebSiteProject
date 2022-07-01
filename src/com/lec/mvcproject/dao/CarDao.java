@@ -104,24 +104,18 @@ public class CarDao {
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT brandname,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B" + 
-				"    WHERE C.brandID = b.brandID AND brandname=?" + 
-				"    ORDER BY CPRICE";
+		String sql = "SELECT brandNAME,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B" + 
+				"    WHERE C.brandID = b.brandID AND BRANDNAME like '%'||?||'%'";
 		try {
 			conn=getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, brandname);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				 String cid =rs.getString("cid");
-				 String brandid=rs.getString("brandid");
 				 String carname=rs.getString("carname");
-				 String designid=rs.getString("designid");
 				 int cprice = rs.getInt("cprice");
-				 String cfuel=rs.getString("cfuel");
-				 String cmile=rs.getString("cmile");
 				 String cphoto=rs.getString("cphoto");
-				 dtos.add(new CarDto(cid, brandid, carname, designid, cprice, cfuel, cmile, cphoto));
+				 dtos.add(new CarDto(carname,cprice,cphoto));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -141,7 +135,7 @@ public class CarDao {
 			PreparedStatement pstmt = null;
 			ResultSet         rs    = null;
 			String sql = "SELECT brandNAME,CARNAME,d.designname ,CPHOTO, Cprice FROM CAR C, CAR_BRAND B , CAR_DESIGN D" + 
-					"    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME=?  AND D.DESIGNID=?";
+					"    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME like '%'||?||'%'  AND D.DESIGNID LIKE'%'||?||'%'";
 			try {
 				conn=getConnection();
 				pstmt = conn.prepareStatement(sql);
@@ -149,14 +143,10 @@ public class CarDao {
 				pstmt.setString(2, designid);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					 String cid =rs.getString("cid");
-					 String brandid=rs.getString("brandid");
 					 String carname=rs.getString("carname");
 					 int cprice = rs.getInt("cprice");
-					 String cfuel=rs.getString("cfuel");
-					 String cmile=rs.getString("cmile");
 					 String cphoto=rs.getString("cphoto");
-					 dtos.add(new CarDto(cid, brandid, carname, designid, cprice, cfuel, cmile, cphoto));
+					 dtos.add(new CarDto(carname, designid, cprice,cphoto));
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

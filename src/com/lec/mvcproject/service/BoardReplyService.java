@@ -22,7 +22,7 @@ public class BoardReplyService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 파일첨부 로직 + 파라미터들 받아 DB에 join
-				String path = request.getRealPath("freeBoardUp");
+				String path = request.getRealPath("boardUp");
 				int maxSize = 1024*1024*10; // 최대업로드 사이즈는 10M
 				String bfile = "";
 				try {
@@ -30,25 +30,30 @@ public class BoardReplyService implements Service {
 					Enumeration<String> params = mRequest.getFileNames();
 					String param = params.nextElement();
 					bfile = mRequest.getFilesystemName(param);
-					// mId, fTitle, fContent,  fileName, fIp
+					// mId, fTitle, fContent,  fileName, 
 					HttpSession httpSession = request.getSession();
-					String mid = ((MemberDto)httpSession.getAttribute("member")).getMid();
-					String bsubject = mRequest.getParameter("bsubject");
-					String bcontent = mRequest.getParameter("bcontent");
-					String fIp = request.getRemoteAddr();
-					int bgroup = Integer.parseInt(mRequest.getParameter("bgroup"));
-					int bstep = Integer.parseInt(mRequest.getParameter("bstep"));
-					int bindent = Integer.parseInt(mRequest.getParameter("bindent"));
-					BoardDao boardDao = BoardDao.getInstance();
-					int result = boardDao.replyBoard(mid, bsubject, bcontent, bfile, fIp, bgroup, bstep, bindent);
-					// joinMember결과에 따라 적절히 request.setAttribute
-					if(result == BoardDao.SUCCESS) { // 회원가입 진행
-						request.setAttribute("boaredResult", "답글쓰기 성공");
+					MemberDto member = (MemberDto)httpSession.getAttribute("member");
+					if(member!=null) {
+						String mid = member.getMid();
+						String bsubject = mRequest.getParameter("bsubject");
+						String bcontent = mRequest.getParameter("bcontent");
+						String bip = request.getRemoteAddr();
+						int bgroup = Integer.parseInt(mRequest.getParameter("bgroup"));
+						int bstep = Integer.parseInt(mRequest.getParameter("bstep"));
+						int bindent = Integer.parseInt(mRequest.getParameter("bindent"));
+						BoardDao boardDao = BoardDao.getInstance();
+						int result = boardDao.replyBoard(mid, bsubject, bcontent, bfile, bip, bgroup, bstep, bindent);
+						// joinMember결과에 따라 적절히 request.setAttribute
+						if(result == BoardDao.SUCCESS) { // 회원가입 진행
+							request.setAttribute("boaredResult", "답글쓰기 성공");
+						}else {
+							request.setAttribute("boaredResult", "답글쓰기 실패");
+						}
+						// mRequest에서 넘어온 pageNum(mRequest를 사용하면 request의 파라미터들이 다 null이 됨)을 request에 set
+						request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
 					}else {
-						request.setAttribute("boaredResult", "답글쓰기 실패");
+						request.setAttribute("boaredResult", "로그인이 안 되어 있습니다");
 					}
-					// mRequest에서 넘어온 pageNum(mRequest를 사용하면 request의 파라미터들이 다 null이 됨)을 request에 set
-					request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 					request.setAttribute("boaredResult", "답글쓰기 실패");
@@ -60,7 +65,7 @@ public class BoardReplyService implements Service {
 					try {
 						File serverFile = new File(path+"/"+bfile);
 						is = new FileInputStream(serverFile);
-						os = new FileOutputStream("C:/Carlos_Java/webPro/source/07_Project1/1stProject/WebContent/boardUp/"+bfile);
+						os = new FileOutputStream("D:\\Carlos\\webPro\\source\\08_1stProject\\CarWebSiteProject\\WebContent\\boardUp/"+bfile);
 						byte[] bs = new byte[(int)serverFile.length()];
 						while(true) {
 							int nByteCnt = is.read(bs);

@@ -64,6 +64,7 @@ public class BoardDao {
 				 int bindent= rs.getInt("bindent");;
 				 String bip= rs.getString("bip");
 				 Date brdate=rs.getDate("brdate");
+				 dtos.add(new BoardDto(bno, mid, bsubject, bcontent, bfile, bhit, bgroup, bstep, bindent, bip, brdate));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -105,8 +106,8 @@ public class BoardDao {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO BOARD (BNO,MID,bSUBJECT,BCONTENT,BFILE,bHIT,BGROUP,bSTEP,BINDENT,bIP)" + 
-				"VALUES (BOARD_SEQ.NEXTVAL,?,?,?,?,?,BOARD_SEQ.CURRVAL,0,0,?)";
+		String sql = "INSERT INTO BOARD (BNO,MID,bSUBJECT,BCONTENT,BFILE,bHIT,BGROUP,bSTEP,BINDENT,bIP,brdate)" + 
+				"VALUES (BOARD_SEQ.NEXTVAL,?,?,?,?,0,BOARD_SEQ.CURRVAL,0,0,?,SYSDATE)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -131,7 +132,7 @@ public class BoardDao {
 	private void hitup(int bno) {
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql ="UPDATE BOARD SET HIT = HIT+1 WHERE BNO = ?";
+		String sql ="UPDATE BOARD SET bHIT = bHIT+1 WHERE BNO = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -222,24 +223,25 @@ public class BoardDao {
 		return dto;
 	}
 	//(6)글 수정하기 
-	public int modifyBoard(String mid, String bsubject,String bcontent,String bfile,String bip) {
+	public int modifyBoard(int bno, String bsubject,String bcontent,String bfile) {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE BOARD SET bSUBJECT = ?," + 
-				"                 BCONTENT = ?, ?" + 
+		String sql = "UPDATE BOARD SET" + 
+				"                bSUBJECT = ?," + 
+				"                 BCONTENT = ?, " + 
 				"                 BFILE = ?," + 
-				"                 bIP = ?," + 
-				"				  brdate = SYSDATE"+	
-				"                 WHERE MID = ?";
+				"                 brdate = sysdate" + 
+				"                 WHERE bno = ?";
+		
+		System.out.println("오류1");
 		try {
 			conn=getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bsubject);
 			pstmt.setString(2, bcontent);
 			pstmt.setString(3, bfile);
-			pstmt.setString(4, bip);
-			pstmt.setString(5,mid);
+			pstmt.setInt(4, bno);
 			result = pstmt.executeUpdate();
 			System.out.println(result==SUCCESS? "글수정성공":"글수정실패");
 		} catch (SQLException e) {
@@ -248,20 +250,23 @@ public class BoardDao {
 			try {
 				if(pstmt!=null) pstmt.close();
 				if(conn !=null) conn.close();
-			} catch (SQLException e) {System.out.println(e.getMessage());}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		return result;
 	}
-	//(7)글 삭제하기 (mid로 삭제) 답변글은 남아 있음 
-	public int deleteBoard(String mid) {
+	
+	//(7)글 삭제하기 (bno로 삭제) 
+	public int deleteBoard(int bno) {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM BOARD WHERE mID=?";
+		String sql = "DELETE FROM BOARD WHERE bno=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid);
+			pstmt.setInt(1, bno);
 			result = pstmt.executeUpdate();
 			System.out.println(result==SUCCESS? "글삭제성공":"글삭제실패");
 		} catch (SQLException e) {

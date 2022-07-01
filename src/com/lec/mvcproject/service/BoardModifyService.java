@@ -32,13 +32,11 @@ public class BoardModifyService implements Service {
 					if(bfile==null) {
 						bfile = dbFileName;
 					}
-					// mId, fTitle, fContent,  fileName, fIp
-					String mid = mRequest.getParameter("mid");
+					int bno = Integer.parseInt(mRequest.getParameter("bno"));
 					String bsubject = mRequest.getParameter("bsubject");
 					String bcontent = mRequest.getParameter("bcontent");
-					String bip = request.getRemoteAddr();
 					BoardDao boardDao = BoardDao.getInstance();
-					int result = boardDao.modifyBoard(mid, bsubject, bcontent, bfile, bip);
+					int result = boardDao.modifyBoard(bno, bsubject, bcontent, bfile);
 					// joinMember결과에 따라 적절히 request.setAttribute
 					if(result == BoardDao.SUCCESS) { // 회원가입 진행
 						request.setAttribute("boaredResult", "글수정 성공");
@@ -49,7 +47,7 @@ public class BoardModifyService implements Service {
 					request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
-					request.setAttribute("boaredResult", "글수정 실패");
+					request.setAttribute("boaredResult", "글수정 실패(2)");
 				}
 				// 서버에 올라간 fileboardUp 파일을 소스폴더에 filecopy (파일 수정을 안 했거나, 예외가 떨어질 경우 복사 안 함)
 				if(dbFileName!=null && !bfile.equals(dbFileName)) { 
@@ -58,7 +56,7 @@ public class BoardModifyService implements Service {
 					try {
 						File serverFile = new File(path+"/"+bfile);
 						is = new FileInputStream(serverFile);
-						os = new FileOutputStream("C:/Carlos_Java/webPro/source/07_Project1/1stProject/WebContent/boardUp/"+bfile);
+						os = new FileOutputStream("D:\\Carlos\\webPro\\source\\08_1stProject\\CarWebSiteProject\\WebContent\\boardUp/"+bfile);
 						byte[] bs = new byte[(int)serverFile.length()];
 						while(true) {
 							int nByteCnt = is.read(bs);

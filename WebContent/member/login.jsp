@@ -29,6 +29,17 @@
 </style>
 </head>
 <body>
+<c:if test="${not empty errorMsg}">
+		<script>
+			alert('${errorMsg}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty loginErrorMsg }">
+	<script>
+		alert('${loginErrorMsg}');
+	</script>
+	</c:if>
 	<c:if test="${not empty joinResult }">
 		<script>
 			alert('${joinResult}');

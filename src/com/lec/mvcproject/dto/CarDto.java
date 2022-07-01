@@ -23,6 +23,18 @@ public class CarDto {
 		this.cmile = cmile;
 		this.cphoto = cphoto;
 	}
+	public CarDto(String carname, String designid, int cprice, String cphoto) {
+		this.carname = carname;
+		this.designid = designid;
+		this.cprice = cprice;
+		this.cphoto = cphoto;
+	}
+	public CarDto(String carname, int cprice, String cphoto) {
+		super();
+		this.carname = carname;
+		this.cprice = cprice;
+		this.cphoto = cphoto;
+	}
 
 	public String getCid() {
 		return cid;

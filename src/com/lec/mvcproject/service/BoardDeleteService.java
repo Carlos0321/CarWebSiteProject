@@ -9,9 +9,9 @@ public class BoardDeleteService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String mid = request.getParameter("mid");
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		BoardDao boardDao = BoardDao.getInstance();
-		int result = boardDao.deleteBoard(mid);
+		int result = boardDao.deleteBoard(bno);
 		if(result == BoardDao.SUCCESS) {
 			request.setAttribute("boaredResult", "글삭제 성공");
 		}else {

@@ -82,7 +82,7 @@ public class Pcontroller extends HttpServlet {
 		}else if(com.equals("/logout.do")) { //로그아웃- 세션 날리기
 			service = new MLogoutService();
 			service.execute(request, response);
-			viewPage = "main/main.jsp";
+			viewPage = "main.do";
 			
 		}else if(com.equals("/modifyView.do")) { //정보 수정 화면 
 			viewPage="member/modify.jsp";
@@ -115,45 +115,45 @@ public class Pcontroller extends HttpServlet {
 			/* * * * * * * * * * *  * * * * * * * * * * * *
 			 * * * * * * * * * Board 관련 요청  * * * * * * *
 			* * * * * * * * * * *  * * * * * * * * * * * * */
-		}else if(com.equals("/boardList.do")) { //시승후기 작성 화면
+		}else if(com.equals("/boardList.do")) { //게시판 화면
 			service = new BoardListService();
 			service.execute(request, response);
 			viewPage = "board/boardList.jsp";
 			
-		}else if(com.equals("/boardWriteView.do")) {
+		}else if(com.equals("/boardWriteView.do")) {//글쓰기 화면
 			viewPage = "board/boardWrite.jsp";
 			
-		}else if(com.equals("/boardWrite.do")) {
+		}else if(com.equals("/boardWrite.do")) {//글 쓰기 
 			service = new BoardWriteService();
 			service.execute(request, response);
 			viewPage = "boardList.do";
 			
-		}else if(com.equals("/boardContent.do")) {
+		}else if(com.equals("/boardContent.do")) {//글 상세보기 
 			service = new BoardContentService();
 			service.execute(request, response);
 			viewPage = "board/boardContent.jsp";
 			
-		}else if(com.equals("/boardModifyView.do")) {
+		}else if(com.equals("/boardModifyView.do")) {//글 수정 화면
 			service = new BoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "board/boardModify.jsp";
 			
-		}else if(com.equals("/boradModify.do")) {
+		}else if(com.equals("/boardModify.do")) {//글 수정
 			service = new BoardModifyService();
 			service.execute(request, response);
 			viewPage = "boardList.do";
 			
-		}else if(com.equals("/boardDelete.do")) {
+		}else if(com.equals("/boardDelete.do")) {//글 삭제
 			service = new BoardDeleteService();
 			service.execute(request, response);
 			viewPage = "boardList.do";
 			
-		}else if(com.equals("/boardReplyView.do")) {
+		}else if(com.equals("/boardReplyView.do")) {//답변글 쓰기 화면
 			service = new BoardReplyViewService();
 			service.execute(request, response);
 			viewPage = "board/boardReply.jsp";
 			
-		}else if(com.equals("/boardReply.do")) {
+		}else if(com.equals("/boardReply.do")) {//답변글 쓰기 
 			service = new BoardReplyService();
 			service.execute(request, response);
 			viewPage = "boardList.do";

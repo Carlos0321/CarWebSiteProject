@@ -204,8 +204,8 @@
 					</div>
 					<div class="col-md-12 m-bottom-60">
 						<div class="filters-button-group text-right sm-text-center">
-							<button class="button is-checked" e2data-filter="*">View
-								all</button>
+							 <button class="button" e2data-filter="*" onlclick="location.href='main.jsp'">View
+								all</button> 
 							<button class="button" data-filter=".metal"
 								onclick="location.href='main.do?brandname=BMW'">BMW</button>
 							<button class="button" data-filter=".transition"
@@ -218,10 +218,9 @@
 					</div>
 					<div style="clear: both;"></div>
 					<div class="grid text-center">
-					${cars } 
+						<c:forEach var="car"  step="1" items="${cars }">
 							<div class="grid-item transition metal ium">
-						<c:forEach var="car" items="${cars }">
-								<img alt="대표사진" src="${conPath }/carimg/${car.cphoto}">
+								<img alt="대표사진" src="${conPath }/carimg/${car.cphoto}" width="300" height="300" >
 								<div class="grid_hover_area text-center">
 									<div class="grid_hover_text m-top-110">
 										<h4 class="text-white">${car.carname }</h4>
@@ -233,108 +232,17 @@
 											class="fa fa-long-arrow-right"></i></a>
 									</div>
 								</div>
+								</div>
 								<!-- End off grid Hover area -->
 								
 						</c:forEach>
+					</div> 
 					</div>
-					<!-- End off grid item -->
-					<%-- <tr>		
-				<c:set var="i" value="0"/>	
-				<c:forEach items="${cars }" var="car"> 
-				<c:if test="${not empty car.cFileName }">
-				<td>
-				<img src="${conPath}/carimg/${car.cphoto }">
-				<div class="carname">${car.carname }</div>
-				<div class="cprice">${car.cprice }</div>
-				</td>
-				<c:if test="${i%4==3 and i!==11; }">
-				</hr>
-				</c:if>
-				<c:set var ="i" value="${i+1 }"/>
-				</c:forEach>		
-				</tr>
-				</c:if> --%>
-					<div class="grid-item post-transition metal numberGreaterThan50">
-						<img alt="" src="${conPath }/carimg/718cayman.png">
-						<div class="grid_hover_area text-center">
-							<div class="grid_hover_text m-top-50">
-								<h4 class="text-white">718Cayman</h4>
-								<h5 class="text-white">
-									<em>Fashionista</em>
-								</h5>
-								<a href="${conPath }/car/carContent.jsp?cid=${cid}"
-									class="popup-img text-white m-top-40">자세히 보기<i
-									class="fa fa-long-arrow-right"></i></a>
-							</div>
-						</div>
-						<!-- End off grid Hover area -->
 					</div>
+					</section>
 					<!-- End off grid item -->
-
-					<div class="grid-item alkali ar">
-						<img alt="" src="${conPath }/carimg/718caymanGT4.png">
-						<div class="grid_hover_area text-center">
-							<div class="grid_hover_text m-top-50">
-								<h4 class="text-white">718CaymanGT4</h4>
-								<h5 class="text-white">
-									<em>Fashionista</em>
-								</h5>
-								<a href="assets/images/porfolio-06.jpg"
-									class="popup-img text-white m-top-40">자세히 보기 <i
-									class="fa fa-long-arrow-right"></i></a>
-							</div>
-						</div>
-						<!-- End off grid Hover area -->
-					</div>
-					<!-- End off grid item -->
-
-					<div class="grid-item post-transition metal ium">
-						<img alt="" src="${conPath }/carimg/911Carrera.png">
-						<div class="grid_hover_area text-center">
-							<div class="grid_hover_text m-top-150">
-								<h4 class="text-white">911GTS</h4>
-								<h5 class="text-white">
-									<em>Fashionista</em>
-								</h5>
-								<a href="assets/images/porfolio-04.jpg"
-									class="popup-img text-white m-top-50">자세히 보기 <i
-									class="fa fa-long-arrow-right"></i></a>
-							</div>
-						</div>
-						<!-- End off grid Hover area -->
-					</div>
-					<!-- End off grid item -->
-
-					<div class="grid-item metal ar">
-						<img alt="" src="${conPath }/assets/images/porsche/911Carrera.png">
-						<div class="grid_hover_area text-center">
-							<div class="grid_hover_text m-top-110">
-								<h4 class="text-white">911Carrera</h4>
-								<h5 class="text-white">
-									<em>Fashionista</em>
-								</h5>
-								<a href="assets/images/porfolio-05.jpg"
-									class="popup-img text-white m-top-40">자세히 보기 <i
-									class="fa fa-long-arrow-right"></i></a>
-							</div>
-						</div>
-						<!-- End off grid Hover area -->
-					</div>
-					<!-- End off grid item -->
-
-				</div>
-
-				<div style="clear: both;"></div>
-
-			</div>
-		</div>
-		</div>
-		<!-- Portfolio container end -->
-	</section>
-	<!-- End off portfolio section -->
 	<hr />
 	<!--Models section-->
-
 	<section id="models" class="models bg-grey roomy-80">
 		<div class="container">
 			<div class="row">
@@ -349,114 +257,36 @@
 							<div class="separator_left"></div>
 						</div>
 					</div>
+					</div>
 					<div class="col-md-12 m-bottom-60">
 						<div class="filters-button-group text-right sm-text-center">
 							<button class="button" data-filter=".metal"
-								onclick="location.href='.do?'">sedan</button>
+								onclick="location.href='main.do?designid=10&brandname=${dto}'">sedan</button>
 							<button class="button" data-filter=".transition"
-								onclick="location.href='.do'">coupe</button>
+								onclick="location.href='main.do?designid=30&brandname=${dto}'">coupe</button>
 							<button class="button" data-filter=".alkali"
-								onclick="location.href='.do'">SUV</button>
+								onclick="location.href='main.do?designid=20&brandname=${dto}'">SUV</button>
 							<button class="button" data-filter=".ar"
-								onclick="location.href='.do'">carbirolet</button>
+								onclick="location.href='main.do?designid=40&brandname=${dto}'">carbirolet</button>
 						</div>
-
+						
+					<c:forEach var="dto" begin="1" end="7" step="1" items="${dtos }">
 						<div class="col-md-3 col-sm-6">
 							<div class="model_item m-top-30">
 								<div class="model_img">
-								<img alt="" src="${conPath }/carimg/718caymanGT4.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
+								<img alt="" src="${conPath }/carimg/${dto.cphoto}">
+									 <div class="model_caption">
+									<a href="${conPath }/car/carContent.jsp?cid=${cid}" class="text-white">자세히보기</a>
+										<!-- 	class="popup-img text-white m-top-40">자세히 보기<i
+											class="fa fa-long-arrow-right"></i></a> -->
+										<!-- <h5 class="text-white">자세히 보기</h5> -->
+									</div> 
 								</div>
 							</div>
 						</div>
+						<
+						</c:forEach>
 						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img alt=""
-										src="${conPath }/assets/images/porsche/718Boxter_carbirolet.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img alt=""
-										src="${conPath }/assets/images/porsche/718Boxter_carbirolet.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img alt=""
-										src="${conPath }/assets/images/porsche/718Boxter_carbirolet.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img alt=""
-										src="${conPath }/assets/images/porsche/718Boxter_carbirolet.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img alt=""
-										src="${conPath }/assets/images/porsche/718Boxter_carbirolet.png">
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-									<img src="assets/images/model-img07.jpg" alt="" />
-									<div class="model_caption">
-										<h5 class="text-white">Angela Baby</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item meet_team m-top-30">
-								<a href="">Meet All Them <i class="fa fa-long-arrow-right"></i></a>
-							</div>
-						</div>
-						<!-- End off col-md-3 -->
-
 					</div>
 				</div>
 			</div>
