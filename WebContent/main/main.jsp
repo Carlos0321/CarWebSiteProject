@@ -45,6 +45,16 @@
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
+	<c:if test="${brandOverView == 1 }">
+		<script>
+			location.href = '#brandOverView';
+		</script>
+	</c:if>
+	<c:if test="${OurModels == 2}">
+		<script>
+		location.href = '#OurModels';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<!--Home Sections-->
 
@@ -195,7 +205,7 @@
 				<div class="main-gallery roomy-80">
 					<div class="col-md-12">
 						<div class="head_title text-left sm-text-center wow fadeInDown">
-							<h2>Brand OverView</h2>
+							<h2 id="brandOverView">Brand OverView</h2>
 							<h5>
 								<em>Some our recent works is here. Discover them now!</em>
 							</h5>
@@ -204,7 +214,7 @@
 					</div>
 					<div class="col-md-12 m-bottom-60">
 						<div class="filters-button-group text-right sm-text-center">
-							 <button class="button" e2data-filter="*" onlclick="location.href='main.jsp'">View
+							 <button class="button" e2data-filter="*" onlclick="location.href='main.do'">View
 								all</button> 
 							<button class="button" data-filter=".metal"
 								onclick="location.href='main.do?brandname=BMW'">BMW</button>
@@ -217,28 +227,25 @@
 						</div>
 					</div>
 					<div style="clear: both;"></div>
-					<div class="grid text-center">
-						<c:forEach var="car"  step="1" items="${cars }">
-							<div class="grid-item transition metal ium">
-								<img alt="대표사진" src="${conPath }/carimg/${car.cphoto}" width="300" height="300" >
-								<div class="grid_hover_area text-center">
-									<div class="grid_hover_text m-top-110">
-										<h4 class="text-white">${car.carname }</h4>
-										<h5 class="text-white">
-											<em>${car.cprice }</em>
-										</h5>
-										<a href="${conPath }/car/carContent.jsp?cid=${cid}"
-											class="popup-img text-white m-top-40">자세히 보기<i
-											class="fa fa-long-arrow-right"></i></a>
-									</div>
-								</div>
-								</div>
-								<!-- End off grid Hover area -->
-								
-						</c:forEach>
-					</div> 
+					  <div class="grid models text-center">
+					    <c:set var="i" value="0"/>
+					  <c:forEach var="car"  step="1" items="${cars }">
+                                <div class="grid-item model-item transition metal ium">
+                                    <img alt="" src="${conPath }/carimg/${car.cphoto}" width="300" height="300" >
+                                      <h4>${car.carname }</h4>
+                              		  <h5>${car.cprice }</h5>
+									<a href="carDetail.do?cid=${car.cid }" class="btn btn-default m-top-20">View Details<i class="fa fa-long-arrow-right"></i></a>
+                                </div><!-- End off grid item -->
+                                <c:if test="${i%4 == 3 and i!=11}">
+                                <tr></tr>
+                  </c:if>
+                               
+                                </c:forEach>
+                    </div>
+                    </div>        
 					</div>
 					</div>
+					
 					</section>
 					<!-- End off grid item -->
 	<hr />
@@ -249,7 +256,7 @@
 				<div class="main_models text-center">
 					<div class="col-md-12">
 						<div class="head_title text-left sm-text-center wow fadeInDown">
-							<h2>Our Models</h2>
+							<h2 id="OurModels">Our Models</h2>
 							<h5>
 								<em>The success of Pouseidon is passion and love. Meet them
 									now!</em>
@@ -261,32 +268,29 @@
 					<div class="col-md-12 m-bottom-60">
 						<div class="filters-button-group text-right sm-text-center">
 							<button class="button" data-filter=".metal"
-								onclick="location.href='main.do?designid=10&brandname=${dto}'">sedan</button>
+								onclick="location.href='main.do?designname=SEDAN&brandname=${param.brandname}'">sedan</button>
 							<button class="button" data-filter=".transition"
-								onclick="location.href='main.do?designid=30&brandname=${dto}'">coupe</button>
+								onclick="location.href='main.do?designname=COUPE&brandname=${param.brandname}'">coupe</button>
 							<button class="button" data-filter=".alkali"
-								onclick="location.href='main.do?designid=20&brandname=${dto}'">SUV</button>
+								onclick="location.href='main.do?designname=SUV&brandname=${param.brandname}'">SUV</button>
 							<button class="button" data-filter=".ar"
-								onclick="location.href='main.do?designid=40&brandname=${dto}'">carbirolet</button>
+								onclick="location.href='main.do?designname=Carbirolet&brandname=${param.brandname}'">carbirolet</button>
 						</div>
 						
-					<c:forEach var="dto" begin="1" end="7" step="1" items="${dtos }">
-						<div class="col-md-3 col-sm-6">
-							<div class="model_item m-top-30">
-								<div class="model_img">
-								<img alt="" src="${conPath }/carimg/${dto.cphoto}">
-									 <div class="model_caption">
-									<a href="${conPath }/car/carContent.jsp?cid=${cid}" class="text-white">자세히보기</a>
-										<!-- 	class="popup-img text-white m-top-40">자세히 보기<i
-											class="fa fa-long-arrow-right"></i></a> -->
-										<!-- <h5 class="text-white">자세히 보기</h5> -->
-									</div> 
-								</div>
-							</div>
-						</div>
-						<
-						</c:forEach>
-						<!-- End off col-md-3 -->
+						 <div class="grid models text-center" style=width:1000px;>
+						 <c:set var="i" value="0"/>
+						 <c:forEach var="dto"  begin="1" end="10" step="1" items="${dtos }">
+                                <div class="grid-item model-item transition metal ium">
+                                    <img alt="" src="${conPath }/carimg/${dto.cphoto}" width="200" height="150" >
+                                      <h4>${dto.carname }</h4>
+                              		  <h5>${dto.cprice }</h5>
+									<a href="carDetail.do?cid=${dto.cid }" class="btn btn-default m-top-20">View Details<i class="fa fa-long-arrow-right"></i></a>
+                                </div><!-- End off grid item -->
+                                  <c:if test="${i%4 == 3 and i!=11}">
+                                <tr></tr>
+                  </c:if>
+                         </c:forEach>
+					</div>
 					</div>
 				</div>
 			</div>

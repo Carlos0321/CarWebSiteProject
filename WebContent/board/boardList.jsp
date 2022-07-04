@@ -10,13 +10,10 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/style.css" rel="stylesheet">
 <style>
-#content_form {
-	width: 800px;
-	height: 550px;
-	margin: 20px auto 0px;
-}
+
 #content_form table {border: 2px solid gray; width:90%; margin: 0px auto;}
 #content_form table tr { background-color: white; height:40px; }
+#content_form img{width:200px; height:100px;}
 #content_form td, #content_form th {text-align: center; padding:5px; }
 #content_form caption {font-size: 30px; padding:10px;}
 #content_form h2, #content_form b{text-align: center; color:red;}
@@ -26,13 +23,18 @@
 #content_form input:not(.btn), #content_form textarea {
 	width: 90%;
 }
+#content_form {
+	width: 800px;
+	height: 550px;
+	margin: 20px auto 0px;
+}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('tr').click(function(){
 				var bno = Number($(this).children().eq(0).text()); // 0번째 td안의 있는 text;
-				//alert(fId);
+				//alert(bno);
 				if(!isNaN(bno)){
 					location.href = '${conPath}/boardContent.do?bno='+bno+'&pageNum=${pageNum}';
 				}
@@ -70,7 +72,7 @@
 							</c:forEach>
 							${board.bsubject } <!-- 글제목에 a태그를 걸지 말고 query로 tr을 클릭하면 상세보기 페이지로 가기 -->
 							<c:if test="${not empty board.bfile }">
-								<td><img src="${conPath }/boardUp/${board.bfile}" width="100"></td>
+								<td><img src="${conPath }/boardUp/${board.bfile}" width="100" height="100"></td>
 							</c:if>
 							<c:if test="${empty board.bfile }">
 								<td>사진 미기재</td>
@@ -82,6 +84,7 @@
 			</c:forEach>
 		</c:if>
 	</table>
+	
 	<div class="paging">
 		<c:if test="${startPage > BLOCKSIZE }">
 			[ <a href="${conPath }/boardList.do?pageNum=${startPage-1}"> 이전 </a> ]
@@ -99,6 +102,7 @@
 		</c:if>
 	</div>
 	</div>
+
 	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

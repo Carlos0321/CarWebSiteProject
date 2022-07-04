@@ -24,22 +24,33 @@ insert into BOARD (BNO, bSUBJECT, BCONTENT, BFILE, bHIT, BGROUP, bSTEP, BINDENT,
 insert into BOARD (BNO, bSUBJECT, BCONTENT, BFILE, bHIT, BGROUP, bSTEP, BINDENT, bIP, bRDATE, MID) 
     VALUES (BOARD_SEQ.NEXTVAL, '제목1','본문1', NULL, 0, BOARD_SEQ.CURRVAL, 0, 0, '192.168.0.1',SYSDATE, 'KANG'); 
     
-    
+
+
 --CAR DUMMY
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-    VALUES(CAR_SEQ.NEXTVAL,'B5','CAYENNE',20,'117200000','가솔린','6.6km/L',null);
+    VALUES(CAR_SEQ.NEXTVAL,'B5','CAYENNE',20,'117200000','가솔린','6.6km/L','cayenne_suv.png');    
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-    VALUES(CAR_SEQ.NEXTVAL,'B5','MACAN',20,'103000000','가솔린','7.6km/L',null);   
+    VALUES(CAR_SEQ.NEXTVAL,'B5','CAYENNECoupe',30,'126200000','가솔린','6.6km/L','cayennCoupe_SUV.png');
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-    VALUES(CAR_SEQ.NEXTVAL,'B5','BOXTER',40,'91600000','가솔린','9.2km/L','boxter.png');    
+    VALUES(CAR_SEQ.NEXTVAL,'B5','718cayman',30,'86400000','가솔린','9.2km/L','718cayman.png');
+    INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+    VALUES(CAR_SEQ.NEXTVAL,'B5','718cayman',30,'86400000','가솔린','9.2km/L','718caymanGT4.png');   
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-    VALUES(CAR_SEQ.NEXTVAL,'B5','panamera',10,'150300000','가솔린','8.0km/L','panmera.png');
+    VALUES(CAR_SEQ.NEXTVAL,'B5','MACAN',20,'103000000','가솔린','7.6km/L','macan.png');  
+    INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+    VALUES(CAR_SEQ.NEXTVAL,'B5','MACAN_GTS',20,'114500000','가솔린','7.6km/L','macanGTS_SUV.png'); 
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-    VALUES(CAR_SEQ.NEXTVAL,'B5','panameraGTS',10,'221200000','가솔린','7.1km/L','panmeraGTS.png');
+    VALUES(CAR_SEQ.NEXTVAL,'B5','BOXTER',40,'91600000','가솔린','9.2km/L','718Boxter_carbirolet.png');    
+INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+    VALUES(CAR_SEQ.NEXTVAL,'B5','panamera',10,'150300000','가솔린','8.0km/L','panamera4_sedan.png');
+INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+    VALUES(CAR_SEQ.NEXTVAL,'B5','panameraGTS',10,'221200000','가솔린','7.1km/L','panameraGTS_sedan.png');
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
     VALUES(CAR_SEQ.NEXTVAL,'B5','911Carrera',30,'147900000','가솔린','8.1km/L','911Carrera.png');  
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
     VALUES(CAR_SEQ.NEXTVAL,'B5','911CarreraGTS',30,'204100000','가솔린','8.0km/L','911CarreraGTS.png');  
+INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+    VALUES(CAR_SEQ.NEXTVAL,'B5','TYCAN',10,'145600000','전기','251KM/1회충전','taycan_sedan.png');      
 
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
     VALUES(CAR_SEQ.NEXTVAL,'B3','A5',10,'67900000','가솔린','10.9KM/L','A5.PNG') ;
@@ -68,13 +79,15 @@ INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
    VALUES(CAR_SEQ.NEXTVAL,'B3','A5',30,'67900000','가솔린','10.9KM/L','A5.PNG');  
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
+   VALUES(CAR_SEQ.NEXTVAL,'B3','A5Carbirolet',40,'75660000','가솔린','10.5KM/L','A5carbirolet.PNG');  
+INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
    VALUES(CAR_SEQ.NEXTVAL,'B3','e-tron',20,'97220000','전기','2.9KM/kWh','e-tron.PNG'); 
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
   VALUES(CAR_SEQ.NEXTVAL,'B3','e-tronGT',30,'145200000','전기','3.7KM/kWh','e-tronGT.PNG');   
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
    VALUES(CAR_SEQ.NEXTVAL,'B3','Q3',20,'47050000','디젤','14.2KM/L','Q3.PNG');
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
-   VALUES(CAR_SEQ.NEXTVAL,'B3','Q5',20,'63960000','디젤','10.2KM/L','Q3.PNG');     
+   VALUES(CAR_SEQ.NEXTVAL,'B3','Q5',20,'63960000','디젤','10.2KM/L','Q5.PNG');     
 
 INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
     VALUES(CAR_SEQ.NEXTVAL,'B2','A-CLASS',10,'40300000','가솔린','11KM/L','A-CLASS.PNG' );  
@@ -102,5 +115,26 @@ INSERT INTO CAR (cid,brandID,CARNAME,designID,cPRICE,cfuel,cmILE,cphoto)
     VALUES(CAR_SEQ.NEXTVAL,'B2','S-CLASS',10,'140060000','가솔린','12.KM/L','S-CLASS.PNG' );        
 SELECT * FROM CAR ;
 COMMIT;
+--Car update 
+UPDATE CAR SET CPHOTO= 'cayenne_suv.png' where carname ='CAYENNE';
+UPDATE CAR SET CPHOTO= 'cayenneCoupe_SUV.png', carname='CAYENNE_Coupe' where carname ='CAYENNECoupe';
+UPDATE CAR SET CPHOTO= 'macan.png' where carname ='MACAN';
+UPDATE CAR SET CPHOTO= '718Boxter_carbirolet.png' where carname ='BOXTER';
+UPDATE CAR SET CPHOTO= 'panamera4_sedan.png' where carname ='panamera';
+UPDATE CAR SET CPHOTO= 'panameraGTS_sedan.png' where carname ='panameraGTS';
+UPDATE CAR SET CPHOTO= 'A5.png' where carname ='A5';
+UPDATE CAR SET CPHOTO= 'A5.png' where carname ='A5';
+UPDATE CAR SET CPHOTO= 'Q5.PNG' where carname ='Q5';
+UPDATE CAR SET CPHOTO= 'CLS_coupe.png' where carname ='CLS쿠페';
+UPDATE CAR SET CPRICE = '99700000'  WHERE CARNAME='GLE';
+select * from car ORDER BY brandid;
+commit;
+select * from car_display;
 --CAR_DISPLAY
 INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 강남구 청담동');
+INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 강남구 역삼동');
+INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 강남구 삼성동');
+INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 강남구 대치동');
+INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 서초구 서초동');
+INSERT INTO CAR_DISPLAY (CPLACE) VALUES ('서울시 송파구 방이동');
+commit;

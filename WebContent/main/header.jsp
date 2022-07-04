@@ -80,7 +80,7 @@
 				<li><a href="${conPath }/logout.do">logout</a></li>
 				<li><a href="${conPath }/carlistView.do">model</a></li>
 				<li><a href="${conPath }/boardList.do">community</a></li>
-				<li><a href="${conPath }/contactView.do">contact</a></li>
+				<li><a href="${conPath }/contact.do">contact</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

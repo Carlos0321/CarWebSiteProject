@@ -5,6 +5,8 @@ public class CarDto {
 	private String brandid;
 	private String carname;
 	private String designid;
+	private String brandname;
+	private String designname;
 	private int cprice;
 	private String cfuel;
 	private String cmile;
@@ -12,20 +14,20 @@ public class CarDto {
 	
 	public CarDto() {}
 
-	public CarDto(String cid, String brandid, String carname, String designid, int cprice, String cfuel, String cmile,
-			String cphoto) {
+	public CarDto(String cid, String carname, String brandname, String designname, int cprice, String cfuel,
+			String cmile, String cphoto) {
 		this.cid = cid;
-		this.brandid = brandid;
 		this.carname = carname;
-		this.designid = designid;
+		this.brandname = brandname;
+		this.designname = designname;
 		this.cprice = cprice;
 		this.cfuel = cfuel;
 		this.cmile = cmile;
 		this.cphoto = cphoto;
 	}
-	public CarDto(String carname, String designid, int cprice, String cphoto) {
+	public CarDto(String cid, String carname, int cprice, String cphoto) {
+		this.cid = cid;
 		this.carname = carname;
-		this.designid = designid;
 		this.cprice = cprice;
 		this.cphoto = cphoto;
 	}
@@ -98,6 +100,22 @@ public class CarDto {
 
 	public void setCphoto(String cphoto) {
 		this.cphoto = cphoto;
+	}
+
+	public String getBrandname() {
+		return brandname;
+	}
+
+	public void setBrandname(String brandname) {
+		this.brandname = brandname;
+	}
+
+	public String getDesignname() {
+		return designname;
+	}
+
+	public void setDesignname(String designname) {
+		this.designname = designname;
 	}
 
 	@Override

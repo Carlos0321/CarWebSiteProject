@@ -61,7 +61,7 @@ public class BoardWriteService implements Service {
 			try {
 				File serverFile = new File(path+"/"+bfile);
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:\\Carlos\\webPro\\source\\08_1stProject\\CarWebSiteProject\\WebContent\\board/"+bfile);
+				os = new FileOutputStream("C:\\Carlos_Java\\webPro\\source\\07_Project1\\1stProject\\WebContent\\boardUp/"+bfile);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {
 					int nByteCnt = is.read(bs);

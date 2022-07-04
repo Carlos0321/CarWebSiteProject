@@ -164,7 +164,7 @@ p {
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
 }
 textarea,
 input[type="text"],
@@ -1269,9 +1269,10 @@ Brand Section style
 Models Section style
 =====================*/
 
-.main_models{}
+.main_models{width:1000px;}
 .model_item{}
 .model_img{
+	width : 100%;
     position: relative;
     overflow: hidden;
 }

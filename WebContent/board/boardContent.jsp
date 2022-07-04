@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 		#content_form {
-			width: 800px; height:400px;
+			width: 1000px; height:600px;
 			margin: 100px auto 0px;
 		}
 		body { 
@@ -22,6 +22,7 @@
 
 #content_form table {border: 2px solid gray; width:90%; margin: 0px auto;}
 #content_form table tr { background-color: white; height:40px; }
+#content_form img{width:400px; height:300px;}
 #content_form td, #content_form th {text-align: center; padding:5px; }
 #content_form caption {font-size: 30px; padding:10px;}
 #content_form h2, #content_form b{text-align: center; color:red;}
@@ -37,26 +38,27 @@
  <jsp:include page="../main/header.jsp"/>
  <div id="content_form">
 		<table>
-				 <caption>${board.bno }번 글 상세보기</caption>
+				 <caption>${board.bno }번 리뷰</caption>
 				 <tr><td>작성자</td>
 				 		 <td>${board.mid}님</td>
 				 </tr>
 				 <tr><td>제목</td>
 				 		 <td>${board.bsubject }</td>
 				 </tr>
-				 <tr><td>본문</td>
-				 		 <td><pre>${board.bcontent}</pre></td>
-				 </tr>
-				 <tr><th>사진</th>
+				 <tr>
 				 	<td>
 				 		<c:if test="${not empty board.bfile }">
-				 		<a href="${conPath }/boardUp/${board.bfile}" target="_balnk">${board.bfile }</a>
+				 		<%-- <a href="${conPath }/boardUp/${board.bfile}" target="_balnk">${board.bfile }</a> --%>
+				 		<td><img src="${conPath }/boardUp/${board.bfile}" width="200"></td>
 				 		</c:if>
 				 		<c:if test="${empty board.bfile }">
 				 		첨부파일 없음
 				 		</c:if>
 				 	</td>
 				</tr>
+				 <tr><td>본문</td><td><textarea rows="5" cols="32">${board.bcontent}</textarea></td>
+				 		<!--   <td><pre>${board.bcontent}</pre></td>-->
+				 </tr>
 				 <tr><td colspan="2">
 				 			<c:if test="${member.mid eq board.mid }">
 				 				<button class="btn" onclick="location='${conPath}/boardModifyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">수정</button>
@@ -72,6 +74,6 @@
 				
 				</table>
 				</div> 
-				 
+				 	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

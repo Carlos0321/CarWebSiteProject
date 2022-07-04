@@ -98,13 +98,75 @@ public class CarDao {
 		}
 		return car;
 	}
-	//(1)차 목록  브랜드별
+	//(1)차 전체 LIST
+	public ArrayList<CarDto> allListCar(int startRow,int endRow){
+		ArrayList<CarDto> allcar = new ArrayList<CarDto>();
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM (SELECT ROWNUM RN,A.* FROM (SELECT cid,brandNAME,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B" + 
+				"    WHERE C.brandID = b.brandID ORDER BY CPRICE)A)" + 
+				"    WHERE RN BETWEEN ? AND ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				 String cid =rs.getString("cid");
+				 String carname=rs.getString("carname");
+				 int cprice = rs.getInt("cprice");
+				 String cphoto=rs.getString("cphoto");
+				 allcar.add(new CarDto(cid,carname,cprice,cphoto));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()+"오류1");
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return allcar;
+	}
+	//(2) 차 개수 
+	public int getCarTotCnt() {
+		int totCnt = 0;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT COUNT(*) CNT FROM car";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totCnt = rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return totCnt;
+	}
+	//(3)차 목록  브랜드별
 	public ArrayList<CarDto> mainlistCar(String brandname){
 		ArrayList<CarDto> dtos = new ArrayList<CarDto>();
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT brandNAME,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B" + 
+		String sql = "SELECT cid,brandNAME,CARNAME, CPHOTO, CPRICE FROM CAR C, CAR_BRAND B" + 
 				"    WHERE C.brandID = b.brandID AND BRANDNAME like '%'||?||'%'";
 		try {
 			conn=getConnection();
@@ -112,13 +174,14 @@ public class CarDao {
 			pstmt.setString(1, brandname);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+				 String cid= rs.getString("cid");
 				 String carname=rs.getString("carname");
 				 int cprice = rs.getInt("cprice");
 				 String cphoto=rs.getString("cphoto");
-				 dtos.add(new CarDto(carname,cprice,cphoto));
+				 dtos.add(new CarDto(cid,carname,cprice,cphoto));
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()+"오류2");
 		}finally {
 			try {
 				if(rs   !=null) rs.close();
@@ -128,28 +191,30 @@ public class CarDao {
 		}
 		return dtos;
 	}
-	//(1)차 목록  브랜드-유형별
-		public ArrayList<CarDto> designlistCar(String brandname, String designid){
+	//(4)차 목록  브랜드-유형별
+		public ArrayList<CarDto> designlistCar(String brandname, String designname){
 			ArrayList<CarDto> dtos = new ArrayList<CarDto>();
 			Connection        conn  = null;
 			PreparedStatement pstmt = null;
 			ResultSet         rs    = null;
-			String sql = "SELECT brandNAME,CARNAME,d.designname ,CPHOTO, Cprice FROM CAR C, CAR_BRAND B , CAR_DESIGN D" + 
-					"    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME like '%'||?||'%'  AND D.DESIGNID LIKE'%'||?||'%'";
+			String sql = "SELECT cid,brandNAME,CARNAME,designname ,CPHOTO, Cprice, cFuel FROM CAR C, CAR_BRAND B , CAR_DESIGN D" + 
+					"    WHERE C.brandID = b.brandID AND D.DESIGNID=C.DESIGNID AND BRANDNAME like '%'||?||'%'  AND D.DESIGNNAME LIKE'%'||?||'%'";
 			try {
 				conn=getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, brandname);
-				pstmt.setString(2, designid);
+				pstmt.setString(2, designname);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
+					 String cid = rs.getString("cid");	
 					 String carname=rs.getString("carname");
 					 int cprice = rs.getInt("cprice");
 					 String cphoto=rs.getString("cphoto");
-					 dtos.add(new CarDto(carname, designid, cprice,cphoto));
+					 String cfuel =rs.getString("cfuel");
+					 dtos.add(new CarDto(cid, carname, brandname,  designname, cprice, cfuel, null, cphoto));
 				}
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
+				System.out.println(e.getMessage()+"오류3");
 			}finally {
 				try {
 					if(rs   !=null) rs.close();
@@ -159,7 +224,45 @@ public class CarDao {
 			}
 			return dtos;
 		}
-	//(2)차 등록
+	//(5)cid로 dto 가져오기 
+	public CarDto getCar(String cid)	{
+		CarDto getcar = null;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT brandNAME,CARNAME,designname,CPRICE,CFUEL,CMILE,CPHOTO FROM CAR C , CAR_BRAND B, car_design D" + 
+				"    WHERE C.BRANDID = B.BRANDID AND D.DESIGNID=C.DESIGNID AND CID = ? ";
+		try {
+			conn=getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String brandname =rs.getString("brandname");
+				 String carname=rs.getString("carname");
+				 String designname=rs.getString("designname");
+				 int cprice = rs.getInt("cprice");
+				 String cfuel=rs.getString("cfuel");
+				 String cmile=rs.getString("cmile");
+				 String cphoto=rs.getString("cphoto");
+				 getcar = new CarDto(cid, carname, brandname, designname, cprice, cfuel, cmile, cphoto);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()+"오류4");
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return getcar;
+		
+	}
+	
+	//(3)차 등록
 	public int insertCar(CarDto car) {
 		int result = FAIL;
 		Connection conn = null;
@@ -192,7 +295,7 @@ public class CarDao {
 		return result;
 		
 	}
-	//(3)차 삭제
+	//(4)차 삭제
 	public int deleteCar(String carname) {
 		int result = FAIL;
 		Connection conn = null;
