@@ -12,7 +12,7 @@
 <style>
 #content_form {
 	width: 800px;
-	height: 550px;
+	
 	margin: 20px auto 0px;
 }
 #content_form table {border: 2px solid gray; width:90%; margin: 0px auto;}
@@ -190,8 +190,10 @@
 				<tr>
 					<th>성별</th>
 					<td>
-						<input type="radio" name="mgender" value="m" checked="checked" id="m"><label for="m">남자</label>
-						<input type="radio" name="mgender" value="f" id="f"><label for="f">여자</label>
+						<select name="mgender">
+						<option>남자</option>
+						<option>여자</option>
+						</select>
 					</td>
 				</tr>
 				<tr>

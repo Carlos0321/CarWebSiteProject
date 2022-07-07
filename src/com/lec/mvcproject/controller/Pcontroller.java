@@ -22,7 +22,12 @@ import com.lec.mvcproject.service.CarContactService;
 import com.lec.mvcproject.service.CarDetailService;
 import com.lec.mvcproject.service.CarEstimateService;
 import com.lec.mvcproject.service.CarListService;
+import com.lec.mvcproject.service.CommentModifyService;
+import com.lec.mvcproject.service.CommentModifyViewService;
+import com.lec.mvcproject.service.CommentService;
 import com.lec.mvcproject.service.ContactViewService;
+import com.lec.mvcproject.service.DeleteCommentService;
+import com.lec.mvcproject.service.EstimateService;
 import com.lec.mvcproject.service.MAllViewService;
 import com.lec.mvcproject.service.MJoinService;
 import com.lec.mvcproject.service.MLoginService;
@@ -32,7 +37,14 @@ import com.lec.mvcproject.service.MWithdrawalService;
 import com.lec.mvcproject.service.MainService;
 import com.lec.mvcproject.service.MemailConfirmService;
 import com.lec.mvcproject.service.MidConfirmService;
+import com.lec.mvcproject.service.MsgListService;
+import com.lec.mvcproject.service.MsgService;
+import com.lec.mvcproject.service.NewsService;
+import com.lec.mvcproject.service.ReserveService;
+import com.lec.mvcproject.service.ReserveViewService;
 import com.lec.mvcproject.service.Service;
+import com.lec.mvcproject.service.WriteCommentService;
+import com.lec.mvcproject.service.insertEstimateService;
 
 @WebServlet("*.do")
 public class Pcontroller extends HttpServlet {
@@ -123,7 +135,21 @@ public class Pcontroller extends HttpServlet {
 			service = new MAllViewService();
 			service.execute(request, response);
 			viewPage = "admin/aAllView.jsp";
-
+			
+		}else if(com.equals("/adminEstimate.do")) {//견적 리스트 
+			service = new EstimateService();
+			service.execute(request, response);
+			viewPage = "admin/estimateView.jsp";
+			
+		}else if(com.equals("/reserveView.do")) { //예약리스트
+			service = new ReserveViewService();
+			service.execute(request, response);
+			viewPage = "admin/contactChk.jsp";	
+			
+		}else if(com.equals("/msgView.do"))	{ //메세지출력
+			service = new MsgListService();
+			service.execute(request, response);
+			viewPage = "admin/msgChk.jsp";
 			/*
 			 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * Board 관련 요청 * * *
 			 * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -141,12 +167,30 @@ public class Pcontroller extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "boardList.do";
 
-		} else if (com.equals("/boardContent.do")) {// 글 상세보기
+		} else if (com.equals("/boardContent.do")) {// 글 상세보기 //상세보기 내에 댓글 출력
 			service = new BoardContentService();
 			service.execute(request, response);
 			viewPage = "board/boardContent.jsp";
-
-		} else if (com.equals("/boardModifyView.do")) {// 글 수정 화면
+			
+		}else if(com.equals("/writeComment.do")) { //댓글 쓰기
+			service = new WriteCommentService();
+			service.execute(request, response);
+			viewPage="boardContent.do";
+		}else if(com.equals("/deleteComment.do")) { //댓글 삭제
+			service = new DeleteCommentService();
+			service.execute(request, response);
+			viewPage = "boardContent.do";
+			
+		}else if(com.equals("/CommentModifyView.do")) {//댓글 수정 화면
+			service = new CommentModifyViewService();
+			service.execute(request, response);
+			viewPage="board/commentModify.jsp";
+			
+		}else if(com.equals("/commentModify.do")) {//댓글 수정 
+			service = new CommentModifyService();
+			service.execute(request, response);
+			viewPage="boardContent.do";
+		}else if (com.equals("/boardModifyView.do")) {// 글 수정 화면
 			service = new BoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "board/boardModify.jsp";
@@ -179,20 +223,47 @@ public class Pcontroller extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "car/contact.jsp";
 			
+		}else if(com.equals("/reserve.do"))	{//시승 예약 DB처리 
+			service = new ReserveService();
+			service.execute(request, response);
+			viewPage = "/main.do";
+			
 		}else if(com.equals("/carDetail.do")) {//차 상세보기 
 			service = new CarDetailService();
 			service.execute(request, response);
 			viewPage = "car/carDetail.jsp";
 			
-		} else if(com.equals("/estimate.do")) {//차 견적 
+		} else if(com.equals("/estimate.do")) {//견적신청 화면
 			service = new CarEstimateService(); 
 			service.execute(request, response); 
 			viewPage = "car/estimate.jsp"; 
 			
+		}else if(com.equals("/insertEstimate.do"))	{ //견적신청 DB
+			service = new insertEstimateService();
+			service.execute(request, response);
+			viewPage="/main.do";
+					
 		}else if(com.equals("/carlistView.do")) {//차 리스트 
 			service = new CarListService();;
 			service.execute(request, response);
 			viewPage = "car/model.jsp";
+		
+			/*
+			 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 추가 기능 * * *
+			 * * * * * * * * * * * * * * * * * * * * * * * * * * *
+			 */
+		}else if(com.equals("/news.do")) { //뉴스 
+			viewPage = "car/news.jsp";
+			
+		}else if(com.equals("/newsDetail.do")) {//뉴스 상세내용
+			service = new NewsService();
+			service.execute(request, response);
+			viewPage="car/newsDetail.jsp";
+			
+		}else if(com.equals("/msgWrite.do")) { //메세지 쓰기 
+			service = new MsgService();
+			service.execute(request, response);
+			viewPage="main.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

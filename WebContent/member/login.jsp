@@ -12,7 +12,7 @@
 <style>
 #content_form {
 	width: 800px;
-	height: 370px;
+	
 	margin: 130px auto 0px;
 }
 #content_form table {border: 2px solid black; width:90%; margin: 0px auto;}
@@ -26,25 +26,12 @@
 #content_form input:not(.btn), #content_form textarea {
 	width: 90%;
 }
+
+
 </style>
 </head>
 <body>
-<c:if test="${not empty errorMsg}">
-		<script>
-			alert('${errorMsg}');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${not empty loginErrorMsg }">
-	<script>
-		alert('${loginErrorMsg}');
-	</script>
-	</c:if>
-	<c:if test="${not empty joinResult }">
-		<script>
-			alert('${joinResult}');
-		</script>
-	</c:if>
+
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content_form">
 	<form action="${conPath }/login.do" method="post">

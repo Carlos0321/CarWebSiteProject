@@ -11,7 +11,11 @@
 <link href="${conPath }/css/style.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-
+.row{
+padding left {200px;}
+width : 80%;
+}
+div.main_home.text-center{height:80%;}
 </style>
 </head>
 <body>
@@ -22,7 +26,7 @@
 		<div class="overlay">
 			<img src="${conPath }/assets/images/background/banner1.PNG" alt="">
 		</div>
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="main_home text-center">
 					<div class="home_text">
@@ -94,8 +98,10 @@
                                         <table>
                                         <tr >
                                         <td colspan="3">
+                                        <c:if test="${not empty member.mid }">
                                         <input type="submit" value="시승예약" class="btn"  width="500px"
-                                        onclick ="location='${conPath}/car/contact.jsp?mid=${member.mid }'">
+                                        onclick ="location='${conPath}/car/contact.jsp?mid=${member.mid }&&brandname=${getCar.brandname }&&carname=${getCar.carname }'">
+                                        </c:if>
                                         <c:if test="${not empty member.mid && member.mgrade < 5 }">
 										<td><input type="button" value="차량견적" class="btn" onclick="location='${conPath}/estimate.do?cid=${getCar.cid }'"></td>                                          
                                         </c:if>

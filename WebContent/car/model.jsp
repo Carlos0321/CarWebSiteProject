@@ -34,46 +34,60 @@
 <style>
 /* * * * * * * #content * * * * * * */
 #content {
-  width: 1300px;
-  margin: 0 auto;
+	width: 1300px;
+	margin: 0 auto;
 }
 
 /* * * * * * * #content의 .section1 * * * * * * */
-#content .section1{
-  overflow:hidden;
-  text-align:center;
+#content .section1 {
+	overflow: hidden;
+	text-align: center;
 }
-#content .section1 div{
-  border:1px solid gray;
-  box-sizing:border-box;
-  float:left;
-  height:400px;
-  line-height:400px;
+
+#content .section1 div {
+	border: 1px solid gray;
+	box-sizing: border-box;
+	float: left;
+	height: 400px;
+	line-height: 400px;
 }
-#content .section1 .slide_banner{ width:700px; }
-#content .section1 .side_banner { width:300px; }
+
+#content .section1 .slide_banner {
+	width: 700px;
+}
+
+#content .section1 .side_banner {
+	width: 300px;
+}
 
 /* * * * * * * #content의 .section2 * * * * * * */
-#content .section2 .hit_product{margin:10px 0;}
-#content .section2 .hit_product, 
-#content .section2 .md_product{
-    height:400px; line-height:400px;
-    text-align:center; 
-    border:1px solid gray;
+#content .section2 .hit_product {
+	margin: 10px 0;
 }
-#content .section2 .hit_product ul,
-#content .section2 .md_product ul{
-    overflow:hidden;
+
+#content .section2 .hit_product, #content .section2 .md_product {
+	height: 400px;
+	line-height: 400px;
+	text-align: center;
+	border: 1px solid gray;
 }
-#content .section2 .hit_product ul li, 
-#content .section2 .md_product ul li{
-    float:left; width:300px; height:400px; 
-    margin-right : 7px;
-    border:1px solid gray;
-    box-sizing:border-box;
+
+#content .section2 .hit_product ul, #content .section2 .md_product ul {
+	overflow: hidden;
 }
-#content .section2 ul li:first-child{
-  margin-left:7px;
+
+#content .section2 .hit_product ul li, #content .section2 .md_product ul li
+	{
+	float: left;
+	width: 300px;
+	height: 400px;
+	margin-right: 7px;
+	border: 1px solid gray;
+	box-sizing: border-box;
+}
+
+#content .section2 ul li:first-child {
+	margin-left: 7px;
 }
 </style>
 
@@ -105,8 +119,24 @@
 		<!--End off container -->
 	</section>
 	<!--End off Home Sections-->
-	<!--Portfolio Section-->
-	<section id="gallery" class="gallery margin-top-120 bg-white">
+<!--Models section-->
+	<section id="models" class="models bg-grey roomy-80">
+		<div class="container">
+			<div class="row">
+				<div class="main_models text-center">
+					<div class="col-md-12">
+						<div class="head_title text-left sm-text-center wow fadeInDown">
+							<h2 id="OurModels">Our Models</h2>
+							<h5>
+								<em>The success of Pouseidon is passion and love. Meet them
+									now!</em>
+							</h5>
+							<div class="separator_left"></div>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-12 m-bottom-60">
+						<section id="gallery" class="gallery margin-top-120 bg-white">
 		<!-- Portfolio container-->
 		<div class="container">
 			<div class="row">
@@ -115,52 +145,30 @@
 						<div class="filters-button-group sm-text-center">
 							<button class="button is-checked" data-filter="*">View
 								all</button>
-							<button class="button" data-filter=".metal">Catwalk</button>
-							<button class="button" data-filter=".transition">Advertisement</button>
-							<button class="button" data-filter=".alkali">Fashionista</button>
+							<button class="button" data-filter=".metal">가격순</button>
+							<button class="button" data-filter=".transition">연료순</button>
+							<button class="button" data-filter=".alkali"></button>
 							<button class="button" data-filter=".ar">Model Photo</button>
 						</div>
 					</div>
-
-					<div style="clear: both;"></div>
-
-					<!-- <div class="grid models text-center">
-						<div class="grid-item model-item transition metal ium">
-							<img alt="" src="assets/images/model/1.jpg"> <a
-								href="model-details.html" class="btn btn-default m-top-20">View
-								Details<i class="fa fa-long-arrow-right"></i>
-							</a>
-						</div> -->
-						<!-- End off grid item -->
-		<div id="content">
-						<div class="section2">
-							<div class="hit_product">
-								<ul>
-									<li><a href="#">hit_product1</a></li>
-									<li><a href="#">hit_product2</a></li>
-									<li><a href="#">hit_product3</a></li>
-									<li><a href="#">hit_product4</a></li>
-								</ul>
-							</div>
-							<div class="md_product">
-								<ul>
-									<li><a href="#">md_product1</a></li>
-									<li><a href="#">md_product2</a></li>
-									<li><a href="#">md_product3</a></li>
-									<li><a href="#">md_product4</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- .section2-->
-						  </div>
-						<div style="clear: both;"></div>
-
+					</div>
+					</div>
+					</div>
+					</section>
+						 <div class="grid models text-center" >
+						 <c:forEach var="dto" items="${dtos }">
+                                <div class="grid-item model-item transition metal ium" style="width:270px; height:290px;">
+                                    <img alt="" src="${conPath }/carimg/${dto.cphoto}" width="200" height="150">
+                                      <h4>${dto.carname }</h4>
+                              		  <h5>${dto.cprice }</h5>
+									<a href="carDetail.do?cid=${dto.cid }" class="btn btn-default m-top-20">View Details<i class="fa fa-long-arrow-right"></i></a>
+                                </div><!-- End off grid item -->
+                         </c:forEach>
+					</div>
 					</div>
 				</div>
 			</div>
-			<!-- Portfolio container end -->
 	</section>
-	<!-- End off portfolio section -->
 
 	<jsp:include page="../main/footer.jsp" />
 </body>

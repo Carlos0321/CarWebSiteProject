@@ -31,5 +31,5 @@ public class MModifyService implements Service {
 			request.setAttribute("modifyResult", "회원정보 수정 실패");
 		}
 	}
-
+	
 }

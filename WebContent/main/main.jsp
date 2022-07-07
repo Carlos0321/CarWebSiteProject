@@ -23,6 +23,12 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i"
 	rel="stylesheet">
 
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" href="${conPath }/assets/css/slick.css">
 <link rel="stylesheet" href="${conPath }/assets/css/slick-theme.css">
@@ -37,14 +43,43 @@
 
 <!--Theme custom css -->
 <link rel="stylesheet" href="${conPath }/assets/css/style.css">
+<link rel="stylesheet" href="${conPath }/assets/css/style1.css">
 <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="${conPath }/assets/css/responsive.css" />
-
+<style>
+a{color: black};
+[type=submit] {
+  -webkit-appearance: button;
+}
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
+  cursor: pointer;
+}
+</style>
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
+<c:if test="${not empty errorMsg}">
+		<script>
+			alert('${errorMsg}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty loginErrorMsg }">
+	<script>
+		alert('${loginErrorMsg}');
+		history.back();
+	</script>
+	</c:if>
+	<c:if test="${not empty joinResult }">
+		<script>
+			alert('${joinResult}');
+		</script>
+	</c:if>
 	<c:if test="${brandOverView == 1 }">
 		<script>
 			location.href = '#brandOverView';
@@ -55,6 +90,7 @@
 		location.href = '#OurModels';
 		</script>
 	</c:if>
+	
 	<jsp:include page="../main/header.jsp" />
 	<!--Home Sections-->
 
@@ -108,7 +144,7 @@
 							<div
 								class="col-md-7 col-sm-12 col-xs-12 text-right pull-right sm-text-center">
 								<div class="work_item_img">
-									<img src="${conPath }/assets/images/model/p.jpg" alt="" />
+									<a href="https://www.porsche.com/korea/ko/"><img src="${conPath }/assets/images/model/p.jpg" alt=""/></a>
 								</div>
 							</div>
 							<div
@@ -130,7 +166,7 @@
 						<div class="row">
 							<div class="col-md-7 col-sm-12 col-xs-12">
 								<div class="work_item_img sm-text-center sm-m-top-40">
-									<img src="${conPath }/assets/images/model/L.jpg" />
+									<a href="https://www.lamborghini.com/en-en"><img src="${conPath }/assets/images/model/L.jpg" /></a>
 								</div>
 							</div>
 							<div
@@ -154,7 +190,7 @@
 							<div
 								class="col-md-7 col-sm-12 col-xs-12 text-right pull-right sm-text-center">
 								<div class="work_item_img sm-m-top-40">
-									<img src="${conPath }/assets/images/model/f.jpg" />
+									<a href="https://www.ferrari.com/ko-KR"><img src="${conPath }/assets/images/model/f.jpg" /></a>
 								</div>
 							</div>
 							<div
@@ -176,7 +212,7 @@
 						<div class="row">
 							<div class="col-md-7 col-sm-12 col-xs-12">
 								<div class="work_item_img sm-text-center sm-m-top-40">
-									<img src="${conPath }/assets/images/model/b.jpg" />
+									<a href="https://www.bugatti.com/"><img src="${conPath }/assets/images/model/b.jpg" /></a>
 								</div>
 							</div>
 							<div
@@ -214,7 +250,7 @@
 					</div>
 					<div class="col-md-12 m-bottom-60">
 						<div class="filters-button-group text-right sm-text-center">
-							 <button class="button" e2data-filter="*" onlclick="location.href='main.do'">View
+							 <button class="button" data-filter="*" onclick="location.href='main.do'">View
 								all</button> 
 							<button class="button" data-filter=".metal"
 								onclick="location.href='main.do?brandname=BMW'">BMW</button>
@@ -228,19 +264,14 @@
 					</div>
 					<div style="clear: both;"></div>
 					  <div class="grid models text-center">
-					    <c:set var="i" value="0"/>
-					  <c:forEach var="car"  step="1" items="${cars }">
-                                <div class="grid-item model-item transition metal ium">
-                                    <img alt="" src="${conPath }/carimg/${car.cphoto}" width="300" height="300" >
+					  <c:forEach var="car"  items="${cars }">
+                                <div class="grid-item model-item transition metal ium"  >
+                                    <img alt="" src="${conPath }/carimg/${car.cphoto}" width="300" height="174" >
                                       <h4>${car.carname }</h4>
                               		  <h5>${car.cprice }</h5>
 									<a href="carDetail.do?cid=${car.cid }" class="btn btn-default m-top-20">View Details<i class="fa fa-long-arrow-right"></i></a>
                                 </div><!-- End off grid item -->
-                                <c:if test="${i%4 == 3 and i!=11}">
-                                <tr></tr>
-                  </c:if>
-                               
-                                </c:forEach>
+                       </c:forEach>
                     </div>
                     </div>        
 					</div>
@@ -277,105 +308,102 @@
 								onclick="location.href='main.do?designname=Carbirolet&brandname=${param.brandname}'">carbirolet</button>
 						</div>
 						
-						 <div class="grid models text-center" style=width:1000px;>
-						 <c:set var="i" value="0"/>
-						 <c:forEach var="dto"  begin="1" end="10" step="1" items="${dtos }">
-                                <div class="grid-item model-item transition metal ium">
-                                    <img alt="" src="${conPath }/carimg/${dto.cphoto}" width="200" height="150" >
+						 <div class="grid models text-center" >
+						 <c:forEach var="dto" items="${dtos }">
+                                <div class="grid-item model-item transition metal ium" style="width:270px; height:290px;">
+                                    <img alt="" src="${conPath }/carimg/${dto.cphoto}" width="200" height="150">
                                       <h4>${dto.carname }</h4>
                               		  <h5>${dto.cprice }</h5>
 									<a href="carDetail.do?cid=${dto.cid }" class="btn btn-default m-top-20">View Details<i class="fa fa-long-arrow-right"></i></a>
                                 </div><!-- End off grid item -->
-                                  <c:if test="${i%4 == 3 and i!=11}">
-                                <tr></tr>
-                  </c:if>
                          </c:forEach>
 					</div>
 					</div>
 				</div>
 			</div>
 	</section>
+	<!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- * * SB Forms Contact Form * *-->
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- This form is pre-integrated with SB Forms.-->
+                <!-- To make this form functional, sign up at-->
+                <!-- https://startbootstrap.com/solution/contact-forms-->
+                <!-- to get an API token!-->
+                <form action="${conPath }/msgWrite.do">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" name="mname" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" name="memail" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" type="tel" name="mphone" placeholder="Your Phone *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" name="memo" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                            To activate this form, sign up at
+                            <br />
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit">Send Message</button></div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                         <b><a href="${conPath }/adminLoginView.do">관리자 모드</a></b>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-	<!--Contact Us Section-->
-	<section id="contact" class="contact fix">
-		<div class="container">
-			<div class="row">
-				<div class="main_contact p-top-100">
-
-					<div class="col-md-6 sm-m-top-30">
-						<form class="" action="subcribe.php">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label>Your Name *</label> <input id="first_name" name="name"
-											type="text" class="form-control" required="">
-									</div>
-								</div>
-
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label>Your Email *</label> <input id="email" name="email"
-											type="text" class="form-control">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label>Your Message *</label>
-										<textarea class="form-control" rows="6"></textarea>
-									</div>
-									<div class="form-group">
-										<a href="" class="btn btn-default">SEND MESSAGE <i
-											class="fa fa-long-arrow-right"></i></a>
-									</div>
-								</div>
-
-							</div>
-
-						</form>
-					</div>
-
-					<div class="col-md-6">
-						<div class="contact_img">
-							<img src="assets/images/contact-img.png" alt="" />
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-			<!--End off row -->
-		</div>
-		<!--End off container -->
-	</section>
-	<!--End off Contact Section-->
-
-
-	<!--Company section-->
-
-	<section id="company" class="company bg-light">
-		<div class="container">
-			<div class="row">
-				<div class="main_company roomy-100 text-center">
-					<h3 class="text-uppercase">pouseidon.</h3>
-					<p>7th floor - Palace Building - 221b Walk of Fame - London-
-						United Kingdom</p>
-					<p>(+84). 123. 456. 789 - info@poiseidon.lnk</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-	<!-- scroll up-->
-	<div class="scrollup">
-		<a href="#"><i class="fa fa-chevron-up"></i></a>
-	</div>
-	<!-- End off scroll up -->
-
-	</div>
-	<jsp:include page="../main/footer.jsp" />
-	<!-- JS includes -->
 
 	<script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
 	<script src="assets/js/vendor/bootstrap.min.js"></script>
@@ -386,11 +414,16 @@
 	<script src="assets/js/slick.min.js"></script>
 	<script src="assets/js/jquery.collapse.js"></script>
 	<script src="assets/js/bootsnav.js"></script>
-
-
-
 	<script src="assets/js/plugins.js"></script>
 	<script src="assets/js/main.js"></script>
-
+ <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

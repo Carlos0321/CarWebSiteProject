@@ -25,9 +25,11 @@
 }
 #content_form {
 	width: 800px;
-	height: 550px;
 	margin: 20px auto 0px;
 }
+#td1 {background-color: #a0a9eb; }
+#content_form #td1 a{color:red;}
+#content_form th{background-color: lightgray}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -50,7 +52,7 @@
  	<jsp:include page="../main/header.jsp"/>
  	<div id="content_form">
  	<table>
-		<tr><td>
+		<tr><td id="td1">
 					<c:if test="${not empty member }"><a href="${conPath }/boardWriteView.do">글쓰기</a></c:if>
 					<c:if test="${empty member }"><a href="${conPath }/loginView.do">글쓰기는 사용자 로그인 이후에만 가능합니다</a></c:if>
 		</td></tr>
@@ -72,7 +74,7 @@
 							</c:forEach>
 							${board.bsubject } <!-- 글제목에 a태그를 걸지 말고 query로 tr을 클릭하면 상세보기 페이지로 가기 -->
 							<c:if test="${not empty board.bfile }">
-								<td><img src="${conPath }/boardUp/${board.bfile}" width="100" height="100"></td>
+								<td><img src="${conPath }/boardUp/${board.bfile}" width="80" height="80"></td>
 							</c:if>
 							<c:if test="${empty board.bfile }">
 								<td>사진 미기재</td>
@@ -102,7 +104,6 @@
 		</c:if>
 	</div>
 	</div>
-
-	<jsp:include page="../main/footer.jsp"/>
+	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

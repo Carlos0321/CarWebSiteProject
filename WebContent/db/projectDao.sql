@@ -3,14 +3,16 @@
 --                          MEMBER                              --
 ----------------------------------------------------------------------
 --(1)로그인
-SELECT * FROM MEMBER WHERE MID='ZICO' AND MPW='1';
+SELECT * FROM MEMBER WHERE MID='HAN' AND MPW='111';
 --(2) mID로  DTO 가져오기
 SELECT * FROM MEMBER WHERE MID = 'ZICO';
 --(3) ID중복체크
-SELECT * FROM MEMBER WHERE MID = 'ZICO';
+SELECT * FROM MEMBER WHERE MID = 'HAN';
 --(4) 회원가입
 INSERT INTO MEMBER (MID,MGRADE,MNAME,MPW,MTEL,MEMAIL,MADDRESS,MGENDER,mbirth)
     VALUES('CUTE','1','윈터','111','010-1234-1234','WINTER@GMAIL.COM','성북구','여','2001-01-01');
+INSERT INTO MEMBER (MID,MGRADE,MNAME,MPW,MTEL,MEMAIL,MADDRESS,MGENDER,mbirth)
+    VALUES('HAN','5','한소희','111','010-4321-4321','HAN@GMAIL.COM','서초구구','여','2001-01-01');    
 --(5) 회원정보 수정 
 UPDATE MEMBER SET MPW ='1',
                   MNAME = '김민정',
@@ -97,10 +99,52 @@ SELECT * FROM ADMIN WHERE AID = 'ADMIN';
 SELECT * FROM (SELECT ROWNUM RN,A.* FROM
     (SELECT * FROM MEMBER ORDER BY MGRADE )A)
     WHERE RN BETWEEN 1 AND 2;
+----------------------------------------------------------------------
+--                           COMMENT                             --
+----------------------------------------------------------------------
+--1. 댓글쓰기
+
+INSERT INTO BOARD_COMMENT(CNO,MID,CMEMO,BNO)
+    VALUES(COMMENT_SEQ.NEXTVAL,'CUTE','차가 너무 이뻐요',12);
+INSERT INTO BOARD_COMMENT(CNO,MID,CMEMO,BNO)
+    VALUES(COMMENT_SEQ.NEXTVAL,'ZICO','차 색이 이뻐요',12);
+    INSERT INTO BOARD_COMMENT(CNO,MID,CMEMO,BNO)
+    VALUES(COMMENT_SEQ.NEXTVAL,'jo','사진이 안보여요',7);
+SELECT * FROM BOARD_COMMENT;
+
+--2. 댓글 목록 출력 --페이징처리(STARTROW, ENDROW) ROWNUM
+SELECT * FROM (SELECT ROWNUM RN, A.* FROM(SELECT * FROM BOARD_COMMENT WHERE BNO='12' ORDER BY CNO DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+--3. 댓글 갯수 출력 
+SELECT COUNT(*) BOARD_COUNT FROM BOARD_COMMENT WHERE BNO=12;
+--4. 댓글 삭제
+select * from board_comment;
+DELETE FROM BOARD_COMMENT WHERE CNO=5;
+commit;
+rollback;
+--5. 댓글 수정
+UPDATE BOARD_COMMENT SET cmemo = '비 개싫어' WHERE cno=6;
+----------------------------------------------------------------------
+--                           msg                            --
+----------------------------------------------------------------------  
+--메세지 쓰기 
+insert into msg (msid, mname,memail,mphone,memo) 
+    values(msg_seq.NEXTVAL,'박카스','ENERGY@ASD.COM','01012345678','힘들때 박카스 드세요');
+    insert into msg (msid, mname,memail,mphone,memo) 
+    values(msg_seq.NEXTVAL,'박카스1','ENERGY@ASD.COM','01012345678','힘들때 박카스 드세요');
+    insert into msg (msid, mname,memail,mphone,memo) 
+    values(msg_seq.NEXTVAL,'박카스2','ENERGY@ASD.COM','01012345678','힘들때 박카스 드세요');
+    insert into msg (msid, mname,memail,mphone,memo) 
+    values(msg_seq.NEXTVAL,'박카스3','ENERGY@ASD.COM','01012345678','힘들때 박카스 드세요');
+    insert into msg (msid, mname,memail,mphone,memo) 
+    values(msg_seq.NEXTVAL,'박카스4','ENERGY@ASD.COM','01012345678','힘들때 박카스 드세요');
+    commit;
+--메세지 출력 
+SELECT * FROM MSG;
 
 ----------------------------------------------------------------------
 --                           CAR                             --
-----------------------------------------------------------------------    
+----------------------------------------------------------------------  
 -- BRAND별  LIST 
 select * from car where brandid = 'B1';
 --DESIGN별 LIST 
@@ -133,9 +177,20 @@ DELETE FROM CAR WHERE CARNAME = 'A-CLASS';
 ROLLBACK;
 COMMIT;
 
+SELECT * FROM CAR;
+----------------------------------------------------------------------
+--                           ESTIMATE                             --
+----------------------------------------------------------------------    
+INSERT INTO ESTIMATE (EID,MID, BRANDNAME,CARNAME, CPLACE, PREPAYMENT, TERM, PAY)
+    VALUES(ESTIMATE_SEQ.NEXTVAL,'ZICO','PORSCHE','BOXTER','서울시 강남구 청담동','20','36','2035556');    
+    
+SELECT * FROM ESTIMATE;
+
 --HIT수 증가에 따른 MGRADE 수정
 insert into BOARD (BNO, bSUBJECT, BCONTENT, BFILE, bHIT, BGROUP, bSTEP, BINDENT, bIP, bRDATE, MID) 
     VALUES (BOARD_SEQ.NEXTVAL, '제목1','본문1', NULL, 10, BOARD_SEQ.CURRVAL, 0, 0, '192.168.0.1',SYSDATE, 'ZICO');
+insert into BOARD (BNO, bSUBJECT, BCONTENT, BFILE, bHIT, BGROUP, bSTEP, BINDENT, bIP, bRDATE, MID) 
+    VALUES (BOARD_SEQ.NEXTVAL, '제목1','본문1', NULL, 90, BOARD_SEQ.CURRVAL, 0, 0, '192.168.0.1',SYSDATE, 'HAN');    
 SELECT MID, SUM(bHIT) FROM BOARD GROUP BY MID;
 SELECT M.*, NVL((SELECT SUM(bHIT) FROM BOARD WHERE MID=M.MID GROUP BY MID), 0) BHIT FROM MEMBER M;
 
@@ -151,4 +206,5 @@ UPDATE MEMBER SET MGRADE = (SELECT G.MGRADE
     WHERE bHIT BETWEEN LOW AND HIGH AND MID='ZICO')
     WHERE MID='ZICO'; -- ★ ★ ★2번
     commit;
+    
  SELECT M.*, NVL((SELECT SUM(bHIT) FROM BOARD WHERE MID=M.MID GROUP BY MID), 0) BHIT FROM MEMBER M;   

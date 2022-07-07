@@ -15,13 +15,15 @@ public class MLoginService implements Service {
 		String mpw = request.getParameter("mpw");
 		MemberDao mDao = MemberDao.getInstance();
 		int result = mDao.loginCheck(mid, mpw);
-		if(result==MemberDao.LOGIN_SUCCESS) { // 로그인 성공
+		if (result == MemberDao.LOGIN_SUCCESS) { // 로그인 성공
 			HttpSession session = request.getSession();
 			MemberDto member = mDao.getMember(mid);
+			mDao.gradeUp(mid);
 			session.setAttribute("member", member);
-		}else { // 로그인 실패
+		} else { // 로그인 실패
 			request.setAttribute("loginErrorMsg", "아이디와 비번을 확인하세요");
 		}
+
 	}
 
 }

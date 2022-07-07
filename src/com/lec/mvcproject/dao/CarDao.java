@@ -191,6 +191,58 @@ public class CarDao {
 		}
 		return dtos;
 	}
+	//(3-1)시승예약  브랜드list
+		public ArrayList<String> listBrand(){
+			ArrayList<String> brandlist = new ArrayList<String>();
+			Connection        conn  = null;
+			PreparedStatement pstmt = null;
+			ResultSet         rs    = null;
+			String sql = "SELECT DISTINCT brandNAME FROM CAR C, CAR_BRAND B";
+			try {
+				conn=getConnection();
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					brandlist.add(rs.getString("brandNAME"));
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage()+"오류2");
+			}finally {
+				try {
+					if(rs   !=null) rs.close();
+					if(pstmt!=null) pstmt.close();
+					if(conn !=null) conn.close();
+				} catch (SQLException e) {System.out.println(e.getMessage());}
+			}
+			return brandlist;
+		}
+		//(3-2)시승예약  브랜드-차종 list
+				public ArrayList<String> listCarname(){
+					ArrayList<String> carnamelist = new ArrayList<String>();
+					Connection        conn  = null;
+					PreparedStatement pstmt = null;
+					ResultSet         rs    = null;
+					String sql = "SELECT DISTINCT BRANDNAME , CARNAME FROM CAR C, CAR_BRAND B" + 
+							"WHERE C.BRANDID = B.BRANDID ORDER BY BRANDNAME";
+					try {
+						conn=getConnection();
+						pstmt = conn.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							carnamelist.add(rs.getString("brandNAME"));
+							carnamelist.add(rs.getString("carname"));
+						}
+					} catch (SQLException e) {
+						System.out.println(e.getMessage()+"오류2");
+					}finally {
+						try {
+							if(rs   !=null) rs.close();
+							if(pstmt!=null) pstmt.close();
+							if(conn !=null) conn.close();
+						} catch (SQLException e) {System.out.println(e.getMessage());}
+					}
+					return carnamelist;
+				}
 	//(4)차 목록  브랜드-유형별
 		public ArrayList<CarDto> designlistCar(String brandname, String designname){
 			ArrayList<CarDto> dtos = new ArrayList<CarDto>();

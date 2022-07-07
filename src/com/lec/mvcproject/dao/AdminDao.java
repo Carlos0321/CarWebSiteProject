@@ -74,7 +74,6 @@ public class AdminDao {
 				admin = new AdminDto();
 				admin.setaId(rs.getString("aId"));
 				admin.setaPw(rs.getString("aPw"));
-				admin.setaName(rs.getString("aName"));
 			}			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

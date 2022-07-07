@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.mvcproject.dao.BoardDao;
+import com.lec.mvcproject.dao.MemberDao;
 import com.lec.mvcproject.dto.BoardDto;
+import com.lec.mvcproject.dto.MemberDto;
 
 public class BoardListService implements Service {
 
@@ -27,6 +29,9 @@ public class BoardListService implements Service {
 			BoardDao boardDao = BoardDao.getInstance();
 			ArrayList<BoardDto> boardList = boardDao.listBoard(startRow, endRow);
 			request.setAttribute("boardList", boardList);
+			
+			
+			
 			int totCnt = boardDao.getBoardTotCnt(); // 글갯수
 			int pageCnt = (int)Math.ceil((double)totCnt/PAGESIZE);//페이지갯수
 			int startPage = ((currentPage-1)/BLOCKSIZE)*BLOCKSIZE+1;

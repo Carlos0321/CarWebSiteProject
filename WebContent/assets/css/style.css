@@ -258,7 +258,6 @@ p {
 p:last-child {
     margin-bottom: 0px;
 }
-/*colors*/
 .w100 {
     font-weight: 100;
 }
@@ -1834,4 +1833,5 @@ Blog Details Page
 }
 .grid{overflow: hidden;}
 .grid-item {float: left;}
+
 

@@ -64,6 +64,7 @@ CREATE TABLE BOARD(
     FOREIGN KEY(mGRADE) REFERENCES MEMBER_GRADE(mGRADE)
    );
 select * from board;    
+
 --관리자 
 CREATE TABLE ADMIN(
     aID VARCHAR2(50) PRIMARY KEY,
@@ -82,7 +83,7 @@ INSERT INTO CAR_DESIGN(designID,desiGNNAME)VALUES(20,'SUV');
 INSERT INTO CAR_DESIGN(designID,desiGNNAME)VALUES(30,'COUPE');
 INSERT INTO CAR_DESIGN(designID,desiGNNAME)VALUES(40,'Carbirolet');
 SELECT * FROM CAR_DESIGN;
---CAR_BRNAD
+--CAR_BRAND
 DROP TABLE CAR_BRAND CASCADE CONSTRAINTS;
 CREATE TABLE CAR_BRAND(
     brandID  VARCHAR2(30) PRIMARY KEY,
@@ -113,24 +114,74 @@ CREATE TABLE CAR(
     FOREIGN KEY(brandID) REFERENCES CAR_BRAND(brandID),
     FOREIGN KEY(designID) REFERENCES CAR_DESIGN(designID)
 );   
+
 --ESTIMATE 자동차 견적 
 DROP TABLE ESTIMATE;
-CREATE TABLE ESTIMATE (cID VARCHAR2(10) REFERENCES CAR(cid));
-SELECT * FROM CAR;
+DROP SEQUENCE ESTIMATE_SEQ;
+
+CREATE SEQUENCE ESTIMATE_SEQ MAXVALUE 999999 NOCACHE NOCYCLE;
+CREATE TABLE ESTIMATE (    
+    EID NUMBER(2) PRIMARY KEY,
+    MID VARCHAR2(50) REFERENCES MEMBER(MID),
+    BRANDNAME VARCHAR2(10),
+    carname VARCHAR2(50) REFERENCES CAR(CARNAME),
+    PREPAYMENT NUMBER(3) ,
+    TERM NUMBER(2),   
+    CPLACE VARCHAR2(200) REFERENCES CAR_DISPLAY,
+    PAY NUMBER(10)
+    );
+SELECT * FROM estimate where eid ='1';
 
 --CAR_DISPLAY 전시장
 CREATE TABLE CAR_DISPLAY (CPLACE VARCHAR2(200) PRIMARY KEY);
 select * from car_display;
---car_reserve 시승
+
+--car_reserve 시승예약
+drop SEQUENCE car_reserve_SEQ;
+CREATE SEQUENCE car_reserve_SEQ MAXVALUE 999999 NOCACHE NOCYCLE;
+DROP TABLE CAR_RESERVE;
 create table car_reserve (
-   mid VARCHAR2(50) REFERENCES MEMBER(mID) ,
-   cid varchar2(10) REFERENCES CAR(CID),
-   CRDATE DATE NOT NULL,
-   cPLACE VARCHAR2(200),
-   mGRADE NUMBER(1,0)  REFERENCES MEMBER_GRADE(mGRADE)   
+   rID NUMBER(3) PRIMARY KEY,
+   mname VARCHAR2(50) not null ,  
+   mtel varchar2(50) not null,
+   brandname varchar2(100) not null,
+   CarNAME VARCHAR2(50) NOT NULL,
+   CRDATE DATE NOT NULL, 
+   cPLACE VARCHAR2(200) not null
 );
+rollback;
+select to_char(crdate, 'hh:mm') from car_reserve;
+insert into car_reserve (RID,mname, mtel,brandname,carname,crdate,cplace)
+    values(car_reserve_SEQ.NEXTVAL,'조강옥','010-4123-4312','AUDI','A4', '2022-07-06','서울시 강남구 청담동');
+select * from car_reserve;   
 
+select * from car_reserve where mname='조강옥';
 
- 
-    
-    
+SELECT distinct brandNAME FROM CAR C, CAR_BRAND B;
+
+SELECT DISTINCT BRANDNAME , CARNAME FROM CAR C, CAR_BRAND B 
+WHERE C.BRANDID = B.BRANDID ORDER BY BRANDNAME;
+commit; 
+
+--댓글 한줄평 
+create sequence comment_seq MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE BOARD_COMMENT(
+    CNO       NUMBER(6) PRIMARY KEY,
+    CMEMO       VARCHAR2(1000) NOT NULL,
+    MID         VARCHAR2(50) REFERENCES MEMBER(MID),
+    BNO         NUMBER(7) REFERENCES BOARD(BNO),
+    CDATE     DATE DEFAULT SYSDATE NOT NULL
+);
+ALTER TABLE BOARD ADD BOARD_COUNT NUMBER(20) DEFAULT 0;    
+SELECT * FROM BOARD_comment;    
+
+--메세지 
+drop table msg;
+create sequence msg_seq MAXVALUE 99999 NOCACHE NOCYCLE;
+create table msg (
+    msid  NUMBER(6) PRIMARY KEY,
+    mname varchar2(30) not null, 
+    memail  varchar2(100) not null ,
+    mphone number(11) not null,
+    memo varchar2(200)
+);

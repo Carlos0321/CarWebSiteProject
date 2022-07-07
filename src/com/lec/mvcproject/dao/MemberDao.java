@@ -82,8 +82,8 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				int mgrade = rs.getInt("mgrade");
-				String mpw = rs.getString("mpw");
 				String mname = rs.getString("mname");
+				String mpw = rs.getString("mpw");
 				 String mtel= rs.getString("mtel");;
 				 String memail= rs.getString("memail");;
 				 String maddress = rs.getString("maddress");;
@@ -322,7 +322,8 @@ public class MemberDao {
 			return result;
 		}
 		//(10)조회수 증가에 따른 등급업
-		private void gradeUp(String mid) {
+		public int gradeUp(String mid) {
+			int result = FAIL;
 			Connection        conn  = null;
 			PreparedStatement pstmt = null;
 			String sql ="UPDATE MEMBER SET MGRADE = (SELECT G.MGRADE" + 
@@ -333,6 +334,7 @@ public class MemberDao {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,mid);
+				pstmt.setString(2,mid);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -342,6 +344,7 @@ public class MemberDao {
 					if(conn !=null) conn.close();
 				} catch (SQLException e) {System.out.println(e.getMessage());}
 			}
+			return result;
 		}
 	}
 

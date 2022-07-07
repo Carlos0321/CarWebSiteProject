@@ -43,6 +43,10 @@
 <link rel="stylesheet" href="${conPath }/assets/css/responsive.css" />
 
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<style type="text/css">
+div#navbar-menu{background-color: black;}
+a{color: red;}
+</style>
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
 	<!-- Start Header Navigation -->
@@ -65,6 +69,7 @@
 				<li><a href="${conPath }/loginView.do">login</a></li>
 				<li><a href="${conPath }/carlistView.do">model</a></li>
 				<li><a href="${conPath }/boardList.do">community</a></li>
+					<li><a href="${conPath }/news.do">news/magazine</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -78,9 +83,8 @@
 				<li><a href="${conPath }/main.do">home</a></li>
 				<li><a href="${conPath }/modifyView.do">modify</a></li>
 				<li><a href="${conPath }/logout.do">logout</a></li>
-				<li><a href="${conPath }/carlistView.do">model</a></li>
 				<li><a href="${conPath }/boardList.do">community</a></li>
-				<li><a href="${conPath }/contact.do">contact</a></li>
+				<li><a href="${conPath }/news.do">news/magazine</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -93,8 +97,10 @@
 				data-out="fadeOutUp">
 				<li><a href="${conPath }/main.do">home</a></li>
 				<li><a href="${conPath }/logout.do">logout</a></li>
-				<li><a href="${conPath }/carlistView.do">model</a></li>
-				<li><a href="${conPath }/BoardModifyView.do">community</a></li>
+				<li><a href="${conPath }/adminEstimate.do">estimate</a></li>
+				<li><a href="${conPath }/reserveView.do">reserve</a></li>
+				<li><a href="${conPath }/msgView.do">message</a></li>
+				<li><a href="${conPath }/boardList.do">community</a></li>
 			</ul>
 		</div>
 	</c:if>

@@ -11,9 +11,20 @@
 <link href="${conPath }/css/style.css" rel="stylesheet">
 <style>
 		#content_form {
-				width: 800px; height:400px; 
+				width: 800px; 
 				margin: 50px auto 50px;
 		}
+		#content_form table {border: 2px solid gray; width:90%; margin: 0px auto;}
+#content_form table tr { background-color: white; height:40px; }
+#content_form td, #content_form th {text-align: center; padding:5px; }
+#content_form caption {font-size: 30px; padding:10px;}
+#content_form h2, #content_form b{text-align: center; color:red;}
+#content_form a { text-decoration: none; color:black;}
+#content_form .left{text-align: left;}
+#content_form .paging {text-align: center;}
+#content_form input:not(.btn), #content_form textarea {
+	width: 90%;
+}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -53,6 +64,10 @@
 				<tr>
 					<th>주소</th>
 					<td><input type="text" name="maddress" value="${member.maddress }"></td>
+				</tr>
+				<tr>
+					<th>등급</th>
+					<td><input type="text" name="mgrade" value="${member.mgrade }" readonly="readonly"></td>
 				</tr>
 				<tr><td colspan="3">
 						<input type="submit" value="정보수정" class="btn">
