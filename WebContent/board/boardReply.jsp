@@ -51,7 +51,7 @@
 								required="required" size="30"
 								value="[답]${originBoard.bsubject }"></td></tr>
 				<tr><td>본문</td><td><textarea name="bcontent" rows="3" cols="3"></textarea></td></tr>
-				<tr><td>사진</td><td><input type="file" name="bfile"></td></tr>
+				<tr><td>사진</td><td><input type="file" name="bfile" required="required"></td></tr>
 				<tr><td colspan="2">
 							<input type="submit" value="답변쓰기" class="btn">
 							<input type="reset" value="취소" class="btn">

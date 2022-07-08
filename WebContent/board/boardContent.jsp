@@ -92,12 +92,29 @@ div.col-md-5.text-left{width:100px;}
 								<div class="person_details m-top-40">
 									<div class="row">
 										<div class="col-md-5 text-left"></div>
+										
 									</div>
 								</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<table>
+ 				<tr><td colspan="2">
+                      <c:if test="${member.mid eq board.mid }">
+                         <button class="btn" onclick="location='${conPath}/boardModifyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">수정</button>
+                      </c:if>
+                     
+                  <c:if test="${member.mid eq board.mid or not empty admin}">
+                         <button class="btn" onclick="location='${conPath}/boardDelete.do?bno=${board.bno }&pageNum=${param.pageNum }'">삭제</button>
+                      </c:if>
+                      
+                      <c:if test="${not empty member }">
+                         <button class="btn" onclick="location='${conPath}/boardReplyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">답변</button>
+                      </c:if>
+                      <input type="button" value="목록" class="btn"
+                onclick="location='${conPath}/boardList.do?pageNum=${param.pageNum }'"></td></tr>
+				</table>
 		</div>
 	</section>
 
@@ -126,6 +143,7 @@ div.col-md-5.text-left{width:100px;}
 							<p id="p1">${dto.cmemo }</p>
 					</article>
 				</div>
+				
 			</div>
 			<hr />
 		</c:forEach>

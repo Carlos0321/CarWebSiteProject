@@ -62,6 +62,19 @@ button:not(:disabled),
 </style>
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
+<script>
+$(document).ready(function() {
+	$('#estimate').click(function() {
+		alert('신청이 완료되었습니다.');
+	});
+});
+
+$(document).ready(function() {
+	$('#call').click(function() {
+		alert('현재 문의량이 많아 상담이 지연되고있습니다. 죄송합니다');
+	});
+});
+</script>
 <body>
 <c:if test="${not empty errorMsg}">
 		<script>

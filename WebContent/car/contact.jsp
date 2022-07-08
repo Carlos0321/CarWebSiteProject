@@ -137,7 +137,7 @@ input.btn1 {
 	}
 
 	$(document).ready(function() {
-		$('#estimate').click(function() {
+		$('#reserve').click(function() {
 			alert('신청이 완료되었습니다.');
 		});
 	});
@@ -177,11 +177,11 @@ input.btn1 {
 				</tr>
 				<tr>
 					<th>예약날짜</th>
-					<td><input type="date" name="crdate"></td>
+					<td><input type="date" name="rdate" required="required"></td>
 				</tr>
 				<tr>
 					<th>예약시간</th>
-					<td><select  name="rtime">
+					<td><select  name="rtime" required="required">
 							<option>10:00</option>
 							<option>11:00</option>
 							<option>12:00</option>

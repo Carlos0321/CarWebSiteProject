@@ -1,8 +1,9 @@
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
 DROP TABLE CAR CASCADE CONSTRAINTS;
+DROP TABLE BOARD CASCADE CONSTRAINTS;
 --회원등급 
 DROP TABLE MEMBER_GRADE CASCADE CONSTRAINTS;
-DROP TABLE MEMBER_GRADE;
+
 SELECT * FROM MEMBER_GRADE;
 CREATE TABLE MEMBER_GRADE(
     mGRADE NUMBER(1,0) PRIMARY KEY,
@@ -40,7 +41,7 @@ INSERT INTO MEMBER(MID,MNAME,MPW,MTEL,MEMAIL,MADDRESS,MGENDER,mbirth)
 INSERT INTO MEMBER(MID,MNAME,MPW,MTEL,MEMAIL,MADDRESS,MGENDER)
     VALUES('KANG','강동원','1','010-2222-2222','KANG@NAVER.COM','서울시 용산구','남');  
 INSERT INTO MEMBER(MID,MGRADE,MNAME,MPW,MTEL,MEMAIL,MADDRESS,MGENDER)
-    VALUES('jo',5,'조강옥','1','010-3333-3333','JO@NAVER.COM','서울시 용산구','남');
+    VALUES('jo',4,'조강옥','1','010-3333-3333','JO@NAVER.COM','서울시 용산구','남');
 SELECT * FROM MEMBER;    
     
 --자유게시판
@@ -66,6 +67,7 @@ CREATE TABLE BOARD(
 select * from board;    
 
 --관리자 
+drop table admin;
 CREATE TABLE ADMIN(
     aID VARCHAR2(50) PRIMARY KEY,
     apW VARCHAR2(50) NOT NULL
@@ -130,9 +132,10 @@ CREATE TABLE ESTIMATE (
     CPLACE VARCHAR2(200) REFERENCES CAR_DISPLAY,
     PAY NUMBER(10)
     );
-SELECT * FROM estimate where eid ='1';
+
 
 --CAR_DISPLAY 전시장
+DROP TABLE CAR_DISPLAY;
 CREATE TABLE CAR_DISPLAY (CPLACE VARCHAR2(200) PRIMARY KEY);
 select * from car_display;
 
@@ -149,8 +152,8 @@ create table car_reserve (
    CRDATE DATE NOT NULL, 
    cPLACE VARCHAR2(200) not null
 );
-rollback;
-select to_char(crdate, 'hh:mm') from car_reserve;
+COMMIT;
+
 insert into car_reserve (RID,mname, mtel,brandname,carname,crdate,cplace)
     values(car_reserve_SEQ.NEXTVAL,'조강옥','010-4123-4312','AUDI','A4', '2022-07-06','서울시 강남구 청담동');
 select * from car_reserve;   
@@ -164,6 +167,8 @@ WHERE C.BRANDID = B.BRANDID ORDER BY BRANDNAME;
 commit; 
 
 --댓글 한줄평 
+DROP SEQUENCE COMMENT_SEQ;
+DROP TABLE BOARD_COMMENT;
 create sequence comment_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE BOARD_COMMENT(
     CNO       NUMBER(6) PRIMARY KEY,
@@ -177,6 +182,7 @@ SELECT * FROM BOARD_comment;
 
 --메세지 
 drop table msg;
+DROP SEQUENCE MSG_SEQ;
 create sequence msg_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 create table msg (
     msid  NUMBER(6) PRIMARY KEY,
@@ -185,3 +191,4 @@ create table msg (
     mphone number(11) not null,
     memo varchar2(200)
 );
+commit;

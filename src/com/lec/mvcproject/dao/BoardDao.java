@@ -265,7 +265,6 @@ public class BoardDao {
 				+ "                 BFILE = ?," + "                 brdate = sysdate"
 				+ "                 WHERE bno = ?";
 
-		System.out.println("오류1");
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

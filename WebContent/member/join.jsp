@@ -9,28 +9,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/style.css" rel="stylesheet">
-<style>
+<style type="text/css">
 #content_form {
-	width: 800px;
-	
-	margin: 20px auto 0px;
+   width: 800px;
+   
+   margin: 130px auto 0px;
 }
-#content_form table {border: 2px solid gray; width:90%; margin: 0px auto;}
+#content_form table {border: 2px solid black; width:90%; margin: 0px auto;}
 #content_form table tr { background-color: white; height:40px; }
 #content_form td, #content_form th {text-align: center; padding:5px; }
 #content_form caption {font-size: 30px; padding:10px;}
 #content_form h2, #content_form b{text-align: center; color:red;}
-#content_form a { text-decoration: none; color:black;}
+#content_form a { text-decoration: none; color:black}
 #content_form .left{text-align: left;}
 #content_form .paging {text-align: center;}
 #content_form input:not(.btn), #content_form textarea {
-	width: 90%;
-}
-#m , #f {margin : 0 auto;}
-
-#idConfirmResult, #pwChkResult, #emailConfirmResult {
-	text-align: left;
-	padding-left: 30px;
+   width: 90%;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -148,66 +142,66 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-	<div id="content_form"> 
-		<form action="${conPath }/join.do" method="post">
-			<table>
-				<caption>JOIN</caption>
-				<tr>
-					<th>아이디</th>
-					<td><input type="text" name="mid" required="required">
-						<div id="idConfirmResult">&nbsp;</div></td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td><input type="text" name="mname" required="required"></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><input type="password" name="mpw" required="required"></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><input type="password" name="mpwChk" required="required">
-						<div id="pwChkResult">&nbsp;</div></td>
-				</tr>
-				<tr>
-					<th>전화번호</th>
-					<td><input type="text" name="mtel" required="required"></td>
-				</tr>
-				<tr>
-					<th>메일</th>
-					<td><input type="email" name="memail">
-					<div id="emailConfirmResult">&nbsp;</div></td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td><input type="text" name="maddress"></td>
-				</tr>
-				<tr>
-					<th>생년월일</th>
-					<td><input type="text" name="mbirth" id="mbirth"></td>
-				</tr>
-				<tr>
-					<th>성별</th>
-					<td>
-						<select name="mgender">
-						<option>남자</option>
-						<option>여자</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"> </td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="회원가입" class="btn">
-						<input type="button" value="로그인" class="btn"
-						onclick="location.href='${conPath}/loginView.do'">
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
+   <div id="content_form"> 
+      <form action="${conPath }/join.do" method="post">
+         <table>
+            <caption>JOIN</caption>
+            <tr>
+               <th>아이디</th>
+               <td><input type="text" name="mid" required="required">
+                  <div id="idConfirmResult">&nbsp;</div></td>
+            </tr>
+            <tr>
+               <th>이름</th>
+               <td><input type="text" name="mname" required="required"></td>
+            </tr>
+            <tr>
+               <th>비밀번호</th>
+               <td><input type="password" name="mpw" required="required"></td>
+            </tr>
+            <tr>
+               <th>비밀번호</th>
+               <td><input type="password" name="mpwChk" required="required">
+                  <div id="pwChkResult">&nbsp;</div></td>
+            </tr>
+            <tr>
+               <th>전화번호</th>
+               <td><input type="text" name="mtel" required="required"></td>
+            </tr>
+            <tr>
+               <th>메일</th>
+               <td><input type="email" name="memail">
+               <div id="emailConfirmResult">&nbsp;</div></td>
+            </tr>
+            <tr>
+               <th>주소</th>
+               <td><input type="text" name="maddress"></td>
+            </tr>
+            <tr>
+               <th>생년월일</th>
+               <td><input type="text" name="mbirth" id="mbirth"></td>
+            </tr>
+            <tr>
+               <th>성별</th>
+               <td>
+                  <select name="mgender">
+                  <option>남자</option>
+                  <option>여자</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2"> </td>
+            </tr>
+            <tr>
+               <td colspan="2"><input type="submit" value="회원가입" class="btn">
+                  <input type="button" value="로그인" class="btn"
+                  onclick="location.href='${conPath}/loginView.do'">
+               </td>
+            </tr>
+         </table>
+      </form>
+   </div>
 <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

@@ -52,6 +52,7 @@
  	<jsp:include page="../main/header.jsp"/>
  	<div id="content_form">
  	<table>
+ 	<caption>자동차 시승리뷰</caption>
 		<tr><td id="td1">
 					<c:if test="${not empty member }"><a href="${conPath }/boardWriteView.do">글쓰기</a></c:if>
 					<c:if test="${empty member }"><a href="${conPath }/loginView.do">글쓰기는 사용자 로그인 이후에만 가능합니다</a></c:if>
@@ -86,7 +87,6 @@
 			</c:forEach>
 		</c:if>
 	</table>
-	
 	<div class="paging">
 		<c:if test="${startPage > BLOCKSIZE }">
 			[ <a href="${conPath }/boardList.do?pageNum=${startPage-1}"> 이전 </a> ]
