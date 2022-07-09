@@ -24,12 +24,8 @@
 	rel="stylesheet">
 
 
-<link rel="stylesheet" href="${conPath }/assets/css/slick.css">
-<link rel="stylesheet" href="${conPath }/assets/css/slick-theme.css">
-<link rel="stylesheet" href="${conPath }/assets/css/animate.css">
 <link rel="stylesheet" href="${conPath }/assets/css/fonticons.css">
-<link rel="stylesheet"
-	href="${conPath }/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="${conPath }/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${conPath }/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${conPath }/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="${conPath }/assets/css/bootsnav.css">
@@ -81,7 +77,7 @@ a{color: red;}
 			<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 				data-out="fadeOutUp">
 				<li><a href="${conPath }/main.do">home</a></li>
-				<li><a href="${conPath }/modifyView.do">modify</a></li>
+				<li><a href="${conPath }/modifyView.do">my page</a></li>
 				<li><a href="${conPath }/logout.do">logout</a></li>
 				<li><a href="${conPath }/boardList.do">community</a></li>
 				<li><a href="${conPath }/news.do">news/magazine</a></li>

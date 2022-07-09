@@ -30,12 +30,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-<link rel="stylesheet" href="${conPath }/assets/css/slick.css">
-<link rel="stylesheet" href="${conPath }/assets/css/slick-theme.css">
-<link rel="stylesheet" href="${conPath }/assets/css/animate.css">
-<link rel="stylesheet" href="${conPath }/assets/css/fonticons.css">
-<link rel="stylesheet"
-	href="${conPath }/assets/css/font-awesome.min.css">
+
 <link rel="stylesheet" href="${conPath }/assets/css/bootstrap.css">
 <link rel="stylesheet" href="${conPath }/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="${conPath }/assets/css/bootsnav.css">
@@ -109,7 +104,7 @@ $(document).ready(function() {
 
 	<section id="hello" class="img">
 		<div class="overlay">
-			<img src="${conPath }/assets/images/background/banner1.PNG" alt="">
+			<img src="${conPath }/assets/images/background/banner1.PNG" alt="" >
 		</div>
 		<div class="container">
 			<div class="row">

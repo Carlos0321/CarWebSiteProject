@@ -1,27 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="conPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/style.css" rel="stylesheet">
-<script	 src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${conPath }/assets/css/login.css">
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-#content_form table {border: 2px solid black; width:90%; margin: 0px auto;}
-#content_form table tr { background-color: white; height:40px; }
-#content_form td, #content_form th {text-align: center; padding:5px; }
-#content_form caption {font-size: 30px; padding:10px;}
-#content_form h2, #content_form b{text-align: center; color:red;}
-#content_form a { text-decoration: none; color:black;}
-#content_form .left{text-align: left;}
-#content_form .paging {text-align: center;}
-#content_form input:not(.btn), #content_form textarea {
-	width: 90%;
+div.container {
+	padding-top: 100px;
 }
+
+.row {margin 0 auto;
+	padding: 0;
+}
+
+#content_form table {
+	border: 2px solid black;
+	width: 100%;
+	margin: 0px auto;
+}
+
+#content_form table tr {
+	background-color: white;
+	height: 40px;
+}
+
+#content_form td, #content_form th {
+	text-align: center;
+	padding: 5px;
+	width: 150px;
+}
+.login-card{width: 90%}
 </style>
 <script>
 
@@ -48,26 +63,22 @@
 </script>
 </head>
 <body>
- 	<jsp:include page="../main/header.jsp"/>
- 	<section id="m_details" class="m_details roomy-100 fix">
-		<div class="row">
-			<div class="main_details">
-				<div class="col-md-6">
-					<div class="m_details_img">
+	<jsp:include page="../main/header.jsp" />
+	<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+		<div class="container">
+			<div class="card login-card">
+				<div class="row no-gutters">
+					<div class="col-md-5">
 						<img src="${conPath }/carimg/${getCar.cphoto}" alt="" />
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="m_details_content m-bottom-40">
-						<h2>장기렌터카 견적 요청</h2>
-						
-					</div>
-					<hr />
-					<div class="person_details m-top-40">
-						<div class="row">
-						  <form action="${conPath}/insertEstimate.do">
-							<div class="col-md-5 text-left">
-								<table  id ="content_form">
+					<div class="col-md-7">
+						<div class="card-body">
+							<p class="login-card-description">장기 렌터카 견적 요청</p>
+							<form action="${conPath}/insertEstimate.do">
+								<div class="person_details m-top-40">
+									<div class="row">
+										<div class="col-md-5 text-left">
+															<table  id ="content_form">
 								<tr>
 								<td>아이디</td>
 								<td><input type="text" name="mid" required="required" value="${member.mid }"></td>
@@ -97,9 +108,9 @@
 								</td>
 								</tr>
 								</table>
-							</div>
-							<div class="col-md-7 text-left">
-								<table  id ="content_form">
+										</div>
+										<div class="col-md-7 text-left">
+											<table  id ="content_form">
 								<tr><td>브랜드</td>
 								<td><input type="text" name="brandname" required="required" value="${getCar.brandname }"></td>
 								</tr>
@@ -141,15 +152,17 @@
 								</td>
 								</tr>
 								</table>
-								
-							</div>
-						  </form>
+										</div>
+									</div>
+								</div>
+
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
-	</section>
- 	<jsp:include page="../main/footer.jsp"/>
+	</main>
 </body>
 </html>

@@ -24,21 +24,32 @@
 	rel="stylesheet">
 
 
+<link rel="stylesheet" href="assets/css/slick.css">
+<link rel="stylesheet" href="assets/css/slick-theme.css">
+<link rel="stylesheet" href="assets/css/animate.css">
+<link rel="stylesheet" href="assets/css/fonticons.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css/bootstrap.css">
 <link rel="stylesheet" href="assets/css/magnific-popup.css">
 <link rel="stylesheet" href="assets/css/bootsnav.css">
 
 
+<!--For Plugins external css-->
+<!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
 
+<!--Theme custom css -->
 <link rel="stylesheet" href="assets/css/style.css">
+<!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 
+<!--Theme Responsive css-->
 <link rel="stylesheet" href="assets/css/responsive.css" />
- <link rel="stylesheet" href="${conPath }/assets/css/login.css">
 
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 <style>
-div.container{padding-top :100px;}
-.row1{padding-left:100px;}
+.row{
+padding-left:100px;}
+textarea.form-control{width:500px;}
+input.form-control{width:300px;}
 #p1{padding-left:240px;}
 #p2{width:100px;  text-align: center;}
 h4{padding-left:100px;}
@@ -49,40 +60,47 @@ div.col-md-5.text-left{width:100px;}
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-    <div class="container">
-      <div class="card login-card">
-        <div class="row no-gutters" >
-          <div class="col-md-5" >
-            <c:if test="${not empty board.bfile }">
-							<img src="${conPath }/boardUp/${board.bfile}" class="login-card-img" style="margin 0 auto;">
+	<section id="m_details" class="m_details roomy-100 fix">
+		<div class="row">
+			<div class="main_details">
+				<div class="col-md-6">
+					<div class="m_details_img">
+						<c:if test="${not empty board.bfile }">
+							<img src="${conPath }/boardUp/${board.bfile}">
 						</c:if>
 						<c:if test="${empty board.bfile }">
 					첨부파일 없음 
-					</c:if>  
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <p class="login-card-description">${board.bno }번글 리뷰</p>
-              <form action= >
-                  <div class="person_details m-top-40">
-                                    <div class="row">
-                                        <div class="col-md-5 text-left">
-                                           	<p>작성자:</p>
-                                            <p>제목:</p>
-                                            <p>본문:</p>
-                                        </div>
-                                        <div class="col-md-7 text-left">
-                                            <p>${board.mid}님</p>
-                                            <p>${board.bsubject }</p>
-                                            <p>${board.bcontent }</p>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        
-                </form>
-                <table>
-                                     	<tr><td colspan="4">
+					</c:if>
+					</div>
+				</div>
+				</div>
+				<div class="col-md-6">
+					<div class="m_details_content m-bottom-40">
+						<h2>${board.bno }번글 리뷰</h2>
+						<div class="person_details m-top-40">
+							<div >
+								<div class="col-md-5 text-left">
+									<p id="p2">작성자:</p>
+									<p id="p2">제목:</p>
+									<p id="p2">본문:</p>
+								</div>
+								<div class="col-md-7 text-left">
+									<p id="p3">${board.mid}님</p>
+									<p id="p3">${board.bsubject }</p>
+									<textarea class="form-control" rows="6" cols="6">${board.bcontent }</textarea>
+								</div>
+								<div class="person_details m-top-40">
+									<div class="row">
+										<div class="col-md-5 text-left"></div>
+										
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table>
+ 				<tr><td colspan="2">
                       <c:if test="${member.mid eq board.mid }">
                          <button class="btn" onclick="location='${conPath}/boardModifyView.do?bno=${board.bno }&pageNum=${param.pageNum }'">수정</button>
                       </c:if>
@@ -96,25 +114,20 @@ div.col-md-5.text-left{width:100px;}
                       </c:if>
                       <input type="button" value="목록" class="btn"
                 onclick="location='${conPath}/boardList.do?pageNum=${param.pageNum }'"></td></tr>
-                                        </table>
-               
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    </div>
-  </main>
-	<br />
+				</table>
+		</div>
+	</section>
+
+
 	<div class="blog_comments">
 		<h4 class="m-bottom-30">Comment</h4>
 		
-		<div class="row1">
+		<div class="row">
 		<c:forEach items="${commentList}" var="dto">
 			<div class="comment_item">
 				<div class="col-sm-8">
 					<div class="comments_top_tex">
-						<div class="row1">
+						<div class="row">
 							<div class="col-sm-8 pull-left">
 								<h5 class="text-uppercase">${dto.mid }</h5>
 								<small><em>${dto.cdate }</em></small>
@@ -156,7 +169,7 @@ div.col-md-5.text-left{width:100px;}
 	<hr/>
 	<div class="live_chate">
 		<h4>leave a comment</h4>
-		<div class="row1">
+		<div class="row">
 			<form action="${conPath }/writeComment.do" >
 				<input type="hidden" name = "bno" value="${param.bno }">
 				<div class="col-sm-4">

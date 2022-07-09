@@ -27,8 +27,8 @@
 	width: 800px;
 	margin: 20px auto 0px;
 }
-#td1 {background-color: #a0a9eb; }
-#content_form #td1 a{color:red;}
+#td1 {background-color: black; }
+#content_form #td1 a{color:orange;}
 #content_form th{background-color: lightgray}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

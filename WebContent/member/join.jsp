@@ -8,24 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/style.css" rel="stylesheet">
+ <link rel="stylesheet" href="${conPath }/assets/css/login.css">
 <style type="text/css">
-#content_form {
-   width: 800px;
-   
-   margin: 130px auto 0px;
-}
-#content_form table {border: 2px solid black; width:90%; margin: 0px auto;}
-#content_form table tr { background-color: white; height:40px; }
-#content_form td, #content_form th {text-align: center; padding:5px; }
-#content_form caption {font-size: 30px; padding:10px;}
-#content_form h2, #content_form b{text-align: center; color:red;}
-#content_form a { text-decoration: none; color:black}
-#content_form .left{text-align: left;}
-#content_form .paging {text-align: center;}
-#content_form input:not(.btn), #content_form textarea {
-   width: 90%;
-}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
@@ -142,66 +127,69 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-   <div id="content_form"> 
-      <form action="${conPath }/join.do" method="post">
-         <table>
-            <caption>JOIN</caption>
-            <tr>
-               <th>아이디</th>
-               <td><input type="text" name="mid" required="required">
-                  <div id="idConfirmResult">&nbsp;</div></td>
-            </tr>
-            <tr>
-               <th>이름</th>
-               <td><input type="text" name="mname" required="required"></td>
-            </tr>
-            <tr>
-               <th>비밀번호</th>
-               <td><input type="password" name="mpw" required="required"></td>
-            </tr>
-            <tr>
-               <th>비밀번호</th>
-               <td><input type="password" name="mpwChk" required="required">
-                  <div id="pwChkResult">&nbsp;</div></td>
-            </tr>
-            <tr>
-               <th>전화번호</th>
-               <td><input type="text" name="mtel" required="required"></td>
-            </tr>
-            <tr>
-               <th>메일</th>
-               <td><input type="email" name="memail">
-               <div id="emailConfirmResult">&nbsp;</div></td>
-            </tr>
-            <tr>
-               <th>주소</th>
-               <td><input type="text" name="maddress"></td>
-            </tr>
-            <tr>
-               <th>생년월일</th>
-               <td><input type="text" name="mbirth" id="mbirth"></td>
-            </tr>
-            <tr>
-               <th>성별</th>
-               <td>
-                  <select name="mgender">
-                  <option>남자</option>
-                  <option>여자</option>
-                  </select>
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2"> </td>
-            </tr>
-            <tr>
-               <td colspan="2"><input type="submit" value="회원가입" class="btn">
-                  <input type="button" value="로그인" class="btn"
-                  onclick="location.href='${conPath}/loginView.do'">
-               </td>
-            </tr>
-         </table>
-      </form>
-   </div>
-<jsp:include page="../main/footer.jsp"/>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+        <div class="row no-gutters">
+           <div class="col-md-5">
+             <img src="${conPath }/assets/images/login1.jpg" alt="login" class="login-card-img" style="height:900px;"> 
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              
+              <p class="login-card-description">JOIN </p>
+              <form action="${conPath }/join.do" method="post">
+				 <div class="form-group">
+                    <label for="mname" class="sr-only">이름</label>
+                    <input type="text" name="mname" id="mid" required="required" class="form-control" placeholder="이름">
+                  </div>	              
+                  <div class="form-group">
+                    <label for="mid" class="sr-only">아이디</label>
+                    <input type="text" name="mid" id="mid" value="${mid }" required="required" class="form-control" placeholder="아이디">
+                  </div>
+                  <div id="idConfirmResult">&nbsp;</div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">비밀번호</label>
+                    <input type="password" name="mpw" id="password" required="required"  class="form-control" placeholder="비밀번호">
+                  </div>
+                   <div class="form-group mb-4">
+                    <label for="password" class="sr-only">비밀번호확인</label>
+                    <input type="password" name="mpwChk" id="password" required="required"  class="form-control" placeholder="비밀번호확인">
+                  </div>
+                   <div id="pwChkResult">&nbsp;</div>
+                   <div class="form-group">
+                    <label for="mtel" class="sr-only">전화번호</label>
+                    <input type="text" name="mtel" id="mtel" required="required" class="form-control" placeholder="전화번호">
+                  </div>
+                  <div class="form-group">
+                    <label for="memail" class="sr-only">이메일</label>
+                    <input type="email" name="memail" id="memail" required="required" class="form-control" placeholder="이메일">
+                  </div>
+                   <div id="emailConfirmResult">&nbsp;</div>
+                  <div class="form-group">
+                    <label for="maddress" class="sr-only">주소</label>
+                    <input type="text" name="maddress" id="maddress"  class="form-control" placeholder="주소">
+                  </div>
+                  <div class="form-group">
+                    <label for="mbirth" class="sr-only">생년월일</label>
+                    <input type="text" name="mbirth" id="mbirth"  class="form-control" placeholder="생년월일">
+                  </div>
+                   <div class="form-group">
+                    <label for="mgender" class="sr-only">성별</label>
+                    <input type="radio" name="mgender" id="mgender"   checked="checked" placeholder="성별">남자
+                    <input type="radio" name="mgender" id="mgender"  >여자
+                  </div>
+                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="회원가입">
+               		
+                </form>
+                <p class="login-card-footer-text">Already have an account? <a href="${conPath}/loginView.do" class="text-reset">Login</a></p>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </main>
 </body>
 </html>

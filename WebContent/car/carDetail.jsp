@@ -9,74 +9,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/style.css" rel="stylesheet">
+ <link rel="stylesheet" href="${conPath }/assets/css/login.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-.row{
-padding left {200px;}
+div.container{padding-top :100px;}
+img.login-card-img{padding-top:100px;}
+.row1{
+padding-top : 50px;
+padding-left:100px;
 width : 80%;
 }
 div.main_home.text-center{height:80%;}
+.col-md-5{text-align: center}
 </style>
 </head>
 <body>
  <jsp:include page="../main/header.jsp"/>
-		<!--Home Sections-->
-
-	<section id="hello" class="img">
-		<div class="overlay">
-			<img src="${conPath }/assets/images/background/banner1.PNG" alt="">
-		</div>
-		<div class="container" >
-			<div class="row">
-				<div class="main_home text-center">
-					<div class="home_text">
-						<br /> <br />
-						<h4 class="text-white text-uppercase">a new creative design</h4>
-						<h1 class="text-white text-uppercase">good design is always
-							in season</h1>
-
-						<div class="separator"></div>
-
-						<h5 class=" text-uppercase text-white">
-							<em>One day, the dream will come true with lorem ipsum dolor
-								sit amet, consectetuer adipiscing elit, nummy nibh euismod
-								tincidunt laoreet.</em>
-						</h5>
-					</div>
-				</div>
-			</div>
-			<!--End off row-->
-		</div>
-		<!--End off container -->
-	</section>
-	<!--End off Home Sections-->
-	
-	<!--Model Details Section-->
-            <section id="m_details" class="m_details roomy-100 fix">
-                    <div class="row">
-                        <div class="main_details">
-                            <div class="col-md-6">
-                                <div class="m_details_img">
-                                    <img src="${conPath }/carimg/${getCar.cphoto}" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="m_details_content m-bottom-40">
-                                    <h2>${getCar.carname }</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
-                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi 
-                                        enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                        lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
-                                        dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-                                        dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio 
-                                        dignissim qui blandit praesent luptatum zzril delenit augue duis dolore.</p>
-                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium 
-                                        lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, 
-                                        anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta
-                                        decima.</p>
-                                </div>
-                                <hr />
-                                <div class="person_details m-top-40">
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card"  style="width: 80%">
+        <div class="row no-gutters" style="text-align: center">
+          <div class="col-md-5" >
+             <img src="${conPath }/carimg/${getCar.cphoto}" alt="" class="login-card-img"/>  
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <p class="login-card-description">${getCar.carname }</p>
+              <form action= >
+                  <div class="person_details m-top-40">
                                     <div class="row">
                                         <div class="col-md-5 text-left">
                                            	<p>브랜드:</p>
@@ -94,8 +54,11 @@ div.main_home.text-center{height:80%;}
                                             <p>${getCar.cfuel }</p>
                                             <p>${getCar.cmile }</p>
                                         </div>
-                                        <div id ="content_form">
-                                        <table>
+                                        </div>
+                                        </div>
+                                        
+                </form>
+                <table>
                                         <tr >
                                         <td colspan="3">
                                         <c:if test="${not empty member.mid }">
@@ -109,13 +72,14 @@ div.main_home.text-center{height:80%;}
 										  onclick="history.back()"></td>
                                         </tr>
                                         </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                            </section>
- <jsp:include page="../main/footer.jsp"/>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </main>
+
 </body>
 </html>
