@@ -11,7 +11,7 @@
 <style>
 div.main_footer.p-top-40.p-bottom-30{margin:0 auto; background-color: white; height:50px; padding-top:100px; padding-bottom:100px; width:800px}
 
-ul.list-inline a{color:blue;}
+ul.list-inline a{color:red;}
 a{color: orange;}
 
 </style>
@@ -23,7 +23,7 @@ a{color: orange;}
                         <div class="main_footer p-top-40 p-bottom-30">
                             <div class="col-md-6 text-left sm-text-center">
                                 <p class="wow fadeInRight" data-wow-duration="1s">
-                                    Made with 
+                                    Made with CARLOS
                                     <i class="fa fa-heart"></i>
                                     by 
                                   <!--   <a target="_blank" href="http://bootstrapthemes.co">Bootstrap Themes</a> 

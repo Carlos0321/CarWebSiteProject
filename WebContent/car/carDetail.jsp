@@ -80,6 +80,6 @@ div.main_home.text-center{height:80%;}
     
     </div>
   </main>
-
+<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

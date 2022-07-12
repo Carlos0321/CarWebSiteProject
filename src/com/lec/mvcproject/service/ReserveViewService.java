@@ -1,5 +1,6 @@
 package com.lec.mvcproject.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ public class ReserveViewService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		ReserveDao reserveDao = ReserveDao.getInstance();
 		ArrayList<ReserveDto> reserve = reserveDao.reserveList();
+		
 		request.setAttribute("reserve", reserve);
 	}
 

@@ -37,7 +37,7 @@
 
 <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 <style>
-div.container{padding-top :100px;}
+div.container{padding-top :100px; }
 .row1{padding-left:100px;}
 #p1{padding-left:240px;}
 #p2{width:100px;  text-align: center;}
@@ -45,6 +45,11 @@ h4{padding-left:100px;}
 .blog_comments{boder: 1px solid black;}
 div.paging b{padding-left:700px;}
 div.col-md-5.text-left{width:100px;}
+input.form-control{width: 200px;} 
+textarea.form-control{width:550px;}
+div.form-group{}
+div.col-sm-4{padding-left:50px;}
+div.col-sm-12{padding-left:50px;}
 </style>
 </head>
 <body>
@@ -106,6 +111,7 @@ div.col-md-5.text-left{width:100px;}
     </div>
   </main>
 	<br />
+	
 	<div class="blog_comments">
 		<h4 class="m-bottom-30">Comment</h4>
 		
@@ -132,11 +138,11 @@ div.col-md-5.text-left{width:100px;}
 				</div>
 				
 			</div>
-			<hr />
+			<br />
 		</c:forEach>
 		</div>
 		</div>
-		<hr />
+		<br />
 		<div class="paging">
 		<c:if test="${startPage > BLOCKSIZE }">
 			[ <a href="${conPath }/boardList.do?replypageNum=${startPage-1}&bno=${board.bno}&mid=${member.mid}"> 이전 </a> ]
@@ -181,7 +187,6 @@ div.col-md-5.text-left{width:100px;}
 		</div>
 
 	</div>
-	
 	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

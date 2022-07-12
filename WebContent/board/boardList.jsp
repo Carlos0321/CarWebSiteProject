@@ -50,9 +50,34 @@
  		
  	</c:if>
  	<jsp:include page="../main/header.jsp"/>
+ 		<section id="hello" class="img">
+		<div class="overlay">
+			<img src="${conPath }/assets/images/background/banner5.PNG" alt="" >
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="main_home text-center">
+					<div class="home_text">
+						<br /> <br />
+						<h1 class="text-white text-uppercase">ReView Board</h1>
+
+						<div class="separator"></div>
+
+						<h5 class=" text-uppercase text-white">
+							<em>One day, the dream will come true with lorem ipsum dolor
+								sit amet, consectetuer adipiscing elit, nummy nibh euismod
+								tincidunt laoreet.</em>
+						</h5>
+					</div>
+				</div>
+			</div>
+			<!--End off row-->
+		</div>
+		<!--End off container -->
+	</section>
+	<!--End off Home Sections-->
  	<div id="content_form">
  	<table>
- 	<caption>자동차 시승리뷰</caption>
 		<tr><td id="td1">
 					<c:if test="${not empty member }"><a href="${conPath }/boardWriteView.do">글쓰기</a></c:if>
 					<c:if test="${empty member }"><a href="${conPath }/loginView.do">글쓰기는 사용자 로그인 이후에만 가능합니다</a></c:if>

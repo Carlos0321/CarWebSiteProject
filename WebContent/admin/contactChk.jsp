@@ -43,7 +43,7 @@
 		<td>${dto.mtel }</td>
 		<td>${dto.brandname }</td>
 		<td>${dto.carname }</td>
-		<td><fmt:formatDate value="${dto.crdate }" type="date" dateStyle="short"/></td>
+		<td><fmt:formatDate value="${dto.crdate }" type="date" dateStyle="long"/></td>
 		<td>${dto.cplace }</td>
 		</tr>
 			</c:forEach>

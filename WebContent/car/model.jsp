@@ -100,7 +100,7 @@
 
 	<section id="hello" class="img">
 		<div class="overlay">
-			<img src="${conPath }/assets/images/background/banner1.PNG" alt="">
+			<img src="${conPath }/assets/images/background/banner3.PNG" alt="">
 		</div>
 		<div class="container">
 			<div class="row">
@@ -145,7 +145,7 @@
 						<div class="filters-button-group sm-text-center">
 							<button class="button is-checked" data-filter="*">View
 								all</button>
-							<button class="button" data-filter=".metal">가격순</button>
+							<button class="button" data-filter=".metal">가격대순</button>
 							<button class="button" data-filter=".transition">연료순</button>
 							<button class="button" data-filter=".alkali"></button>
 							<button class="button" data-filter=".ar">Model Photo</button>

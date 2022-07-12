@@ -63,7 +63,7 @@ a{color: red;}
 				<li><a href="${conPath }/main.do">home</a></li>
 				<li><a href="${conPath }/joinView.do">join</a></li>
 				<li><a href="${conPath }/loginView.do">login</a></li>
-				<li><a href="${conPath }/carlistView.do">model</a></li>
+				<%-- <li><a href="${conPath }/carlistView.do">model</a></li> --%>
 				<li><a href="${conPath }/boardList.do">community</a></li>
 					<li><a href="${conPath }/news.do">news/magazine</a></li>
 			</ul>
