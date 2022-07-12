@@ -2,14 +2,14 @@
 =========
 > 개인 프로젝트
 
-- 프로젝트 명 : CWS (CarWeb System) <br>
+- 프로젝트 명 : CWS (Car Web System) <br>
 - 인 원 : 1 명 <br>
 - 기 간 : 2022.06.27 ~ 2022.07.07 <br>
 - DBMS : Oracle 11g Express Edition <br>
 - 언어 : Java SE 8 Platform, HTML5, CSS, CSS3, JavaScript <br>
 - 패턴 : MVC 패턴 <br>
-- 오픈 Library : jQuery v3.4.1, Daum postcode API,SweetAlert API <br>
-- 프로젝트 소개 : 도서 대출 및 반납, 자리예약, 도서추천 등의 기능을 구현하였다. <br>
+- 오픈 Library : jQuery v3.4.1, jQuery-ui-1.12.1, cos.jar, jQuery-3.6.0, dmaps.daum.net/map_js_init <br>
+- 프로젝트 소개 : 자동차 검색 및 시승예약, 차량 견적, 리뷰 게시판 기능을 통합한 웹 사이트이다. <br>
 
 ![슬라이드1](https://user-images.githubusercontent.com/94792080/178390531-b4d75f5f-3ad9-4c36-a308-fdc8c9f390ae.PNG)
 ![슬라이드2](https://user-images.githubusercontent.com/94792080/178390534-638cc203-44f5-4d68-8bcc-67f41bd5f7d7.PNG)
@@ -42,52 +42,56 @@
 
 
 ## 목차
-[1. 작업분할 구조도](https://user-images.githubusercontent.com/35479999/177796900-a5d6c140-b034-4475-be5c-b19280fa8c69.JPG)<br>
-[2. Gantt Chart](https://user-images.githubusercontent.com/35479999/177796906-56d5773c-ffb8-4344-ab85-7cc1a51131dd.JPG)<br>
-[3. Usecase Diagram](https://user-images.githubusercontent.com/35479999/177796912-c0d57115-d478-4927-b38e-f4f2397c8716.JPG)<br>
-[4. eXERD Diagram](https://user-images.githubusercontent.com/35479999/177796914-0e971e2d-f6cf-4d38-accc-d866abd2d4a7.JPG)<br>
-[5. 기능정의서](https://user-images.githubusercontent.com/35479999/177796918-c84791c9-4069-40ac-9a30-edd1265ab0b3.JPG)<br>
-[6. Project Source Explorer](https://user-images.githubusercontent.com/35479999/177796922-361f7960-a246-4b55-bd5a-104a65354734.JPG)<br>
-[7. 실행화면](https://user-images.githubusercontent.com/35479999/177796924-a8d6d702-fddf-479d-a280-4e28f2aa101a.JPG)<br>
+[1. 작업분할 구조도](https://user-images.githubusercontent.com/94792080/178390546-52ca2f35-1da4-4b6a-85fb-ceda3355c6a6.PNG)<br>
+[2. Gantt Chart](https://user-images.githubusercontent.com/94792080/178390549-dd6bef92-93ee-4be2-800e-b3f8fdb5b241.PNG)<br>
+[3. Usecase Diagram](https://user-images.githubusercontent.com/94792080/178390565-0a8d2975-ab91-4332-953e-7998cc1a5a30.PNG)<br>
+[4. eXERD Diagram](https://user-images.githubusercontent.com/94792080/178390570-50267311-5369-401c-87d6-f3f09d1a6dec.PNG)<br>
+[5. 기능정의서](https://user-images.githubusercontent.com/94792080/178390569-4207a62f-d97d-4188-b4ec-7436b3b2e508.PNG)<br>
+[6. Project Source Explorer](https://user-images.githubusercontent.com/94792080/178390574-59d4e4e6-7d59-4387-9983-bb69d7b9907c.PNG)<br>
+[7. 실행화면](https://user-images.githubusercontent.com/94792080/178390586-75db6113-af06-4d4d-bf1b-d5460e995e40.PNG)<br>
 
 
 ### 작업분할 구조도
 <br>
 
-![1](https://user-images.githubusercontent.com/35479999/177796900-a5d6c140-b034-4475-be5c-b19280fa8c69.JPG)
+![1](https://user-images.githubusercontent.com/94792080/178390546-52ca2f35-1da4-4b6a-85fb-ceda3355c6a6.PNG)
 
 ### Gantt chart
 <br>
 
-![2](https://user-images.githubusercontent.com/35479999/177796906-56d5773c-ffb8-4344-ab85-7cc1a51131dd.JPG)
+![2](https://user-images.githubusercontent.com/94792080/178390549-dd6bef92-93ee-4be2-800e-b3f8fdb5b241.PNG)
 
 ### Usecase Diagram
 <br>
 
-![3](https://user-images.githubusercontent.com/35479999/177796912-c0d57115-d478-4927-b38e-f4f2397c8716.JPG)
+![3](https://user-images.githubusercontent.com/94792080/178390565-0a8d2975-ab91-4332-953e-7998cc1a5a30.PNG)
 
 ### eXERD Diagram
 <br>
 
-![4](https://user-images.githubusercontent.com/35479999/177796914-0e971e2d-f6cf-4d38-accc-d866abd2d4a7.JPG)
+![4](https://user-images.githubusercontent.com/94792080/178390570-50267311-5369-401c-87d6-f3f09d1a6dec.PNG)
 
 ### 기능정의서
 <br>
 
-![5](https://user-images.githubusercontent.com/35479999/177796918-c84791c9-4069-40ac-9a30-edd1265ab0b3.JPG)
+![5](https://user-images.githubusercontent.com/94792080/178390569-4207a62f-d97d-4188-b4ec-7436b3b2e508.PNG)
 
 ### Project Source Explorer
 <br>
 
-![6](https://user-images.githubusercontent.com/35479999/177796922-361f7960-a246-4b55-bd5a-104a65354734.JPG)
+![6](https://user-images.githubusercontent.com/94792080/178390574-59d4e4e6-7d59-4387-9983-bb69d7b9907c.PNG)
 
 ### 실행화면
 <br>
+![7](https://user-images.githubusercontent.com/94792080/178390580-101f154f-0a3c-4c8d-84a3-ce7909bc13dd.PNG)
 
-![7](https://user-images.githubusercontent.com/35479999/177796924-a8d6d702-fddf-479d-a280-4e28f2aa101a.JPG)
+![8](https://user-images.githubusercontent.com/94792080/178390581-6f88ef6c-161b-41c4-a82a-419ede9d30c2.PNG)
 
-![8](https://user-images.githubusercontent.com/35479999/177796927-912fa321-4b33-44a3-9664-3b042a230d5d.JPG)
+![9](https://user-images.githubusercontent.com/94792080/178390586-75db6113-af06-4d4d-bf1b-d5460e995e40.PNG)
+
+![10](https://user-images.githubusercontent.com/94792080/178390591-c3a026f6-644b-4715-a054-15a91a14b238.PNG)
+
 
 ### 참조 사이트
-[용산도서관](https://yslib.sen.go.kr/)<br>
-[남산도서관](https://nslib.sen.go.kr/)<br>
+[mercedes-benz](https://https://www.mercedes-benz.co.kr/)<br>
+[신한마이카](https://https://mycar.shinhancard.com/adp/ADPFM507N/ADPFM507C10.shc/)<br>
